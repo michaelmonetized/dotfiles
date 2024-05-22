@@ -7,3 +7,7 @@
 [] Add comments to files and sections
 
 [] Explain functions and settings
+
+[] Create package.json
+
+[] Create brew cask dependencies
