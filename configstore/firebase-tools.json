@@ -1,0 +1,38 @@
+{
+	"motd": {
+		"cloudBuildErrorAfter": 1594252800000,
+		"cloudBuildWarnAfter": 1590019200000,
+		"defaultNode10After": 1594252800000,
+		"minVersion": "3.0.5",
+		"node8DeploysDisabledAfter": 1613390400000,
+		"node8RuntimeDisabledAfter": 1615809600000,
+		"node8WarnAfter": 1600128000000,
+		"fetched": 1714271492030
+	},
+	"usage": true,
+	"analytics-uuid": "67a9d702-910f-4dc4-ba9e-f585b1927a3e",
+	"user": {
+		"iss": "accounts.google.com",
+		"azp": "563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com",
+		"aud": "563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com",
+		"sub": "118437032790360973684",
+		"email": "michaelmonetized@gmail.com",
+		"email_verified": true,
+		"at_hash": "ffn3hBCu2o32OmVZgR5aEg",
+		"iat": 1712162928,
+		"exp": 1712166528
+	},
+	"tokens": {
+		"expires_at": 1714313314876,
+		"refresh_token": "1//050RyveBnKNcjCgYIARAAGAUSNwF-L9Ir-vE8YZXq5KZBwnBSwhzU5s0D4X2Re7pYeZVyehcBHGJvVFTZDc0_vI1OyjJ4q_q9oRE",
+		"scopes": [],
+		"access_token": "ya29.a0Ad52N3-f8qQsgMXLwTez8t6yBsuv3pE4P8hCQv9dwjjQucqZAaNiXNWl2cEsjYGe6pwILf5TOG1YOmtRhuFbS2g511WQE6s4_hZhXWz1RYpAfd50eknepk3gC3maqZHKu5OVOhF7mZVSg1r5bQGabT35kUiTooV99K4RN8USFEI0aCgYKAcwSARISFQHGX2MiAlT1iqRvmnTG_boV1LXHfA0179",
+		"expires_in": 3599,
+		"scope": "https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/userinfo.email openid https://www.googleapis.com/auth/firebase https://www.googleapis.com/auth/cloud-platform",
+		"token_type": "Bearer",
+		"id_token": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImUxYjkzYzY0MDE0NGI4NGJkMDViZjI5NmQ2NzI2MmI2YmM2MWE0ODciLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiNTYzNTg0MzM1ODY5LWZncmhnbWQ0N2JxbmVraWo1aThiNXByMDNobzg0OWU2LmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiNTYzNTg0MzM1ODY5LWZncmhnbWQ0N2JxbmVraWo1aThiNXByMDNobzg0OWU2LmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTE4NDM3MDMyNzkwMzYwOTczNjg0IiwiZW1haWwiOiJtaWNoYWVsbW9uZXRpemVkQGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJhdF9oYXNoIjoiWi1GdVdET3hOeFFXNVo2a1BjekxwdyIsImlhdCI6MTcxNDMwOTcxNSwiZXhwIjoxNzE0MzEzMzE1fQ.FW9I4wwG5IjcHTOwWjCTvTtW90eVYA2svxVjnthJPYodi-YCNettEQVx8pJQ_VMGQFwWTLU47w1WWeT6WDJHm5i1wC0Z217XDtoT77gczDlu7n-H1xHCNUWAKSLBPd1FCYjfq17BxDFdYbzpDMmkO4vjZtYN89ttqQu7BVMnwKHHR2eJPALetAKdOQYwE3YQ87nRhbTlR5KYRN4E0bS1i74llf21WWzzWS_axxpnLNx_0XXHjMSiHpRY1fJ6szBTCVfhOcPTk6b66N3Yynor0g6dIdl4BwyecyKgFVb-lzZiE48xurx3MGv5yPrRHM6wd7v_Cq4PshMV8lAh779y3g"
+	},
+	"activeProjects": {
+		"/Users/michael/Documents/Projects/apps/next/my.hustlelaunch.com": "my-hustle-launch"
+	}
+}

@@ -1,0 +1,26 @@
+import = [
+  "~/.config/alacritty/themes/themes/hustle-launch.toml"
+]
+
+[shell]
+program = "/bin/zsh"
+args = ["-l"]
+
+[env]
+TERM = "xterm-256color"
+
+[window]
+padding.x = 14
+padding.y = 14
+decorations = "Buttonless"
+opacity = 0.8
+dimensions.columns = 91
+dimensions.lines = 108
+position.x=420
+position.y=112
+
+option_as_alt = "Both"
+
+[font]
+normal.family = "NotoMono Nerd Font Mono"
+size = 16
