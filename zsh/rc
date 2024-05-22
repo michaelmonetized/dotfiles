@@ -54,3 +54,6 @@ export NVM_DIR="$HOME/.nvm"
 
 # GIT
 [[ ! -f ~/.config/zsh/git ]] || source ~/.config/zsh/git
+
+# Next
+[[ ! -f ~/.config/zsh/next ]] || source ~/.config/zsh/next
