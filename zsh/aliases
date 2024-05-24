@@ -1,5 +1,12 @@
 alias nano='micro'
 alias ls='eza --color=always --long --git --icons=always --no-filesize --no-time --no-permissions --no-user'
-alias c='clear'
 alias lt='eza --tree --git-ignore --color=always --icons=always --no-filesize --no-time --no-permissions --no-user'
 alias la='eza --color=always --long --git --icons=always --no-filesize --no-time --no-permissions --no-user --all'
+
+function clear_welcome() {
+  clear
+  neofetch
+  ~/.config/zsh/welcome
+}
+
+alias c='clear_welcome'

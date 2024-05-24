@@ -1,0 +1,21 @@
+function git_commit_push() {
+  # if not $1 then use --allow-empty-message argument
+  # if no changes then add --allow-empty argument
+  # first check if there are any changes
+
+  git add .
+
+  if [[ -n $(git status -s) ]]; then
+    git commit -am "${1:---allow-empty-message}"
+    git push
+  else
+    git commit --allow-empty -m "${1:---allow-empty-message}"
+    git push
+  fi
+
+  ascii-image-converter ~/.config/check-it-out.gif -Ccf
+
+  exit 0
+}
+
+alias gitcp=git_commit_push
