@@ -14,8 +14,6 @@ function git_commit_push() {
   fi
 
   ascii-image-converter ~/.config/check-it-out.gif -Ccf
-
-  exit 0
 }
 
 alias gitcp=git_commit_push
