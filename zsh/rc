@@ -17,18 +17,6 @@ fi
 # Powerlevel10k configuration
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-# Tmux startup and welcome message
-if command -v tmux >/dev/null 2>&1; then
-  if [ -z "$TMUX" ]; then
-    if tmux has-session >/dev/null 2>&1; then
-      eval "$(tmux new -A -s home)"
-    else
-      eval "$(tmux new -A -s home)"
-      eval "$(tmux send-keys -t home 'cat ~/.config/zsh/welcome' Enter)"
-    fi
-  fi
-fi
-
 # Keybindings
 [[ ! -f ~/.config/zsh/keybindings ]] || source ~/.config/zsh/keybindings
 
@@ -57,3 +45,7 @@ export NVM_DIR="$HOME/.nvm"
 
 # Next
 [[ ! -f ~/.config/zsh/next ]] || source ~/.config/zsh/next
+
+clear
+neofetch
+source ~/.config/zsh/welcome
