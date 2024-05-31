@@ -48,4 +48,4 @@ export NVM_DIR="$HOME/.nvm"
 
 clear
 neofetch
-source ~/.config/zsh/welcome
+ascii-image-converter ~/.config/logo.png -Ccf
