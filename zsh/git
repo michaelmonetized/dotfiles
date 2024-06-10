@@ -3,8 +3,8 @@ function git_commit() {
   exit_status=$?
   if [ $exit_status -eq 0 ]; then
     echo "Commit successful! Running additional tasks..."
-    open -g raycast://extensions/raycast/raycast/confetti
     ascii-commit-graph --full-width --show-todos --show-issues
+    open -g raycast://extensions/raycast/raycast/confetti
   else
     echo "Commit failed! Running error handling tasks..."
   fi
@@ -16,8 +16,8 @@ function git_push() {
   exit_status=$?
   if [ $exit_status -eq 0 ]; then
     echo "Push successful! Running additional tasks..."
-    open -g raycast://extensions/raycast/raycast/confetti
     ascii-commit-graph --full-width --show-todos --show-issues
+    open -g raycast://extensions/raycast/raycast/confetti
   else
     echo "Push failed! Running error handling tasks..."
   fi
@@ -58,8 +58,8 @@ function git_commit_push() {
     git push
   fi
 
-  open -g raycast://extensions/raycast/raycast/confetti
   ascii-commit-graph --full-width --show-todos --show-issues
+  open -g raycast://extensions/raycast/raycast/confetti
 }
 
 alias gitcp=git_commit_push
