@@ -59,7 +59,7 @@ function git_commit_push() {
   fi
 
   ascii-commit-graph --full-width --show-todos --show-issues
-  open -g raycast://extensions/raycast/raycast/confetti
+  /usr/local/bin/win
 }
 
 alias gitcp=git_commit_push
