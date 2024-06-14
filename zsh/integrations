@@ -1,18 +1,17 @@
 eval "$(fzf --zsh)"
 
-# Function to wrap the zoxide cd command
+eval "$(zoxide init --cmd cd zsh)"
+eval "$(thefuck --alias)"
+eval "$(thefuck --alias fk)"
+
 zcd() {
   if [ "$#" -eq 0 ]; then
-    z
+    cd
   else
-    z "$@"
+    cd "$@"
   fi
 
   ascii-commit-graph --full-width --show-todos --show-issues
 }
 
 alias cd="zcd"
-
-eval "$(zoxide init --cmd cd zsh)"
-eval "$(thefuck --alias)"
-eval "$(thefuck --alias fk)"
