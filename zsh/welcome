@@ -1,1 +1,2 @@
 ascii-image-converter ~/.config/logo.png -Ccf
+ascii-commit-graph --full-width --author

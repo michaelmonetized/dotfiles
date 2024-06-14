@@ -49,3 +49,10 @@ export NVM_DIR="$HOME/.nvm"
 clear
 neofetch
 ascii-image-converter ~/.config/logo.png -Ccf
+
+# bun completions
+[ -s "/Users/michael/.bun/_bun" ] && source "/Users/michael/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
