@@ -27,8 +27,8 @@ config.enable_tab_bar = false
 config.window_decorations = "RESIZE"
 config.window_background_opacity = 0.95
 config.macos_window_background_blur = 1
-config.initial_cols = 101
-config.initial_rows = 93
+config.initial_cols = 102
+config.initial_rows = 56
 
 -- and finally, return the configuration to wezterm
 return config
