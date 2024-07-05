@@ -8,15 +8,15 @@ local config = wezterm.config_builder()
 
 -- For example, changing the color scheme:
 config.colors = {
-  background = "#142128",
-  foreground = "#ffbdd5",
+  background = "#1c2b36",
+  foreground = "#ffc9dd",
     cursor_bg = "#ed79a3",
-	cursor_border = "#ed79a3",
-	cursor_fg = "#ffedf4",
-	selection_bg = "#c9f1ff",
-	selection_fg = "#edfbff",
-	ansi = { "#2d3d4d", "#ed7979", "#44FFB1", "#edd479", "#57baed", "#ed79a3", "#79d0ed", "#fafafa" },
-	brights = { "#6d7d8d", "#fe8a8a", "#8afee1", "#fee58a", "#8ae1fe", "#ffc9dd", "#c9f1ff", "#ffffff" },
+	cursor_border = "#ffc9dd",
+	cursor_fg = "#ffffff",
+	selection_bg = "#ffe894",
+	selection_fg = "#1c2b36",
+	ansi =    { "#1c2b36", "#ed7979", "#6fffd4", "#edd479", "#3d9fed", "#ed79a3", "#79d0ed", "#c9c9c9" },
+	brights = { "#384447", "#ffc9c9", "#b9fffc", "#fff3c9", "#8cd9ff", "#ffc9dd", "#c9f1ff", "#ffffff" },
 }
 
 config.font = wezterm.font("NotoMono Nerd Font Mono")
@@ -25,8 +25,8 @@ config.font_size = 16
 config.enable_tab_bar = false
 
 config.window_decorations = "RESIZE"
-config.window_background_opacity = 0.95
-config.macos_window_background_blur = 1
+config.window_background_opacity = 0.8
+config.macos_window_background_blur = 0
 config.initial_cols = 102
 config.initial_rows = 56
 config.default_prog = { '/bin/zsh', '-l', '-c', '~/.config/tmux-start.sh; exec zsh' }
