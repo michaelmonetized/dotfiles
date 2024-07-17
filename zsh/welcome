@@ -1,2 +1,4 @@
 ascii-image-converter ~/.config/logo.png -Ccf
+neofetch
 ascii-commit-graph --full-width --author
+exit 0
