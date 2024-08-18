@@ -23,6 +23,7 @@
   "plenary.nvim": { "branch": "master", "commit": "a3e3bc82a3f95c5ed0d7201546d5d2c19b20d683" },
   "supermaven-nvim": { "branch": "main", "commit": "d71257f431e190d9236d7f30da4c2d659389e91f" },
   "telescope.nvim": { "branch": "master", "commit": "3b1600d0fd5172ad9fae00987362ca0ef3d8895d" },
+  "transparent.nvim": { "branch": "main", "commit": "2c78d94448b534c35ca1d88a3bae90b1cd1a3d4d" },
   "ui": { "branch": "v2.5", "commit": "967d8b27811f3b2a2ac3fd2de27e5a4992dc0770" },
   "which-key.nvim": { "branch": "main", "commit": "6c1584eb76b55629702716995cca4ae2798a9cca" }
 }
