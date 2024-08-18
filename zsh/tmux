@@ -5,6 +5,11 @@ set -g default-terminal "screen-256color"
 set -ag terminal-overrides ",xterm-256color:RGB"
 set -g mouse on
 
+bind \\ split-window -h -c "#{pane_current_path}"
+bind - split-window -v -c "#{pane_current_path}"
+unbind '"'
+unbind %
+
 set-option -g status-position top
 
 # List of plugins
@@ -39,6 +44,6 @@ set -g @continuum-restore 'off'
 # Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
 run '~/.tmux/plugins/tpm/tpm'
 
-# set -g status-style fg=white,bg=black
+set -g status-style 'fg=color14'
 
-set-hook -g after-new-session 'display-message "Welcome to your new tmux session!"'
+set-hook -g after-new-session 'display-message "Welcome to your :p new tmux session!"'

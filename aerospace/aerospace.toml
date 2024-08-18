@@ -12,7 +12,11 @@ after-login-command = []
 # You can use it to add commands that run after AeroSpace startup.
 # 'after-startup-command' is run after 'after-login-command'
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
-after-startup-command = []
+after-startup-command = ['exec-and-forget sketchybar', 'exec-and-forget borders']
+
+exec-on-workspace-change = ['/bin/bash', '-c',
+    'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE'
+]
 
 # Start AeroSpace at login
 start-at-login = true
@@ -64,6 +68,8 @@ outer.right =      10
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
 # 'main' binding mode must be always presented
 [mode.main.binding]
+cmd-h = [] # Disable "hide application"
+cmd-alt-h = [] # Disable "hide others"
 
 # All possible keys:
 # - Letters.        a, b, c, ..., z
@@ -84,6 +90,10 @@ outer.right =      10
 # See: https://nikitabobko.github.io/AeroSpace/commands#exec-and-forget
 alt-enter = 'exec-and-forget open -n /Applications/WezTerm.app'
 alt-leftSquareBracket = 'exec-and-forget open -n "/Applications/Visual Studio Code.app"'
+alt-2 = 'exec-and-forget open -n "/Applications/Spike.app"'
+alt-n = 'exec-and-forget open -n "/Applications/Notion.app"'
+alt-v = 'exec-and-forget open -n "/Users/michael/Applications/Google Voice.app"'
+alt-shift-v = 'resize width 580'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#layout
 alt-slash = 'layout tiles horizontal vertical'
@@ -103,17 +113,25 @@ alt-shift-k = 'move up'
 alt-shift-l = 'move right'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#resize
+alt-backslash = 'resize width 1152'
+alt-shift-backslash = 'resize width 2304'
+alt-minus = 'resize width -1152'
+
+alt-5 = 'resize height 745'
+alt-shift-5 = 'resize height 1490'
+alt-4 = 'resize height -745'
+
 alt-shift-minus = 'resize smart -50'
 alt-shift-equal = 'resize smart +50'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
-alt-a = 'workspace A' # arc
+alt-w = 'workspace W' # wezterm
 alt-c = 'workspace C' # code
+alt-a = 'workspace A' # arc
+alt-m = 'workspace M' # money
 alt-d = 'workspace D' # design
 alt-e = 'workspace E' # entertainment
-alt-m = 'workspace M' # money
 alt-o = 'workspace O' # Others
-alt-w = 'workspace W' # wezterm
 alt-6 = 'workspace 6'
 alt-7 = 'workspace 7'
 alt-8 = 'workspace 8'
@@ -157,6 +175,14 @@ alt-shift-l = ['join-with right', 'mode main']
 # Arc alt-a
 [[on-window-detected]]
 if.app-id = 'company.thebrowser.Browser'
+run = "move-node-to-workspace A"
+
+[[on-window-detected]]
+if.app-id = 'com.google.Chrome.app.clpgciojomlgfemaadhdddplihnpbfha' # Google Voice
+run = " move-node-to-workspace A"
+
+[[on-window-detected]]
+if.app-id = 'com.google.Chrome.app.glceimkgnkeohpdhhocfggmjmofecejm' # Google Business
 run = "move-node-to-workspace A"
 
 # Code alt-c
@@ -206,25 +232,34 @@ run = "move-node-to-workspace E"
 if.app-id = 'notion.id'
 run = "move-node-to-workspace M"
 
-[[on-window-detected]] # notion
+[[on-window-detected]] # Spike
 if.app-id = 'Hop'
 run = "move-node-to-workspace M"
 
-[[on-window-detected]] # notion
+[[on-window-detected]] # notion calendar
 if.app-id = 'com.cron.electron'
 run = "move-node-to-workspace M"
 
-[[on-window-detected]] # notion
+[[on-window-detected]] # Messages
 if.app-id = 'com.apple.MobileSMS'
 run = "move-node-to-workspace M"
 
-[[on-window-detected]] # notion
+[[on-window-detected]] # Finder
 if.app-id = 'com.apple.finder'
+run = "move-node-to-workspace M"
+
+[[on-window-detected]] # Skype
+if.app-id = 'com.skype.skype'
 run = "move-node-to-workspace M"
 
 # WezTerm alt-w
 [[on-window-detected]]
 if.app-id = 'com.github.wez.wezterm'
+run = "move-node-to-workspace W"
+
+# Perplexity alt-w
+[[on-window-detected]]
+if.app-id = 'com.apple.Safari.WebApp.6AADCAFC-A53B-439D-A9C5-083B68198FA2'
 run = "move-node-to-workspace W"
 
 # Other alt-o

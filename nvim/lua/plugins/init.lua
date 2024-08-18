@@ -25,6 +25,11 @@ return {
         },
       })
     end,
+  },
+
+  {
+    "xiyaowong/transparent.nvim",
+    lazy = false,
   }
   -- {
   -- 	"nvim-treesitter/nvim-treesitter",

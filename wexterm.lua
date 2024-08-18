@@ -25,10 +25,8 @@ config.font_size = 16
 config.enable_tab_bar = false
 
 config.window_decorations = "RESIZE"
-config.window_background_opacity = 1
-config.macos_window_background_blur = 0
-config.initial_cols = 113
-config.initial_rows = 112
+config.window_background_opacity = 0.9
+config.macos_window_background_blur = 3
 config.default_prog = { '/bin/zsh', '-l', '-c', '~/.config/tmux-start.sh; exec zsh' }
 
 -- and finally, return the configuration to wezterm

@@ -7,15 +7,16 @@ PLUGIN_DIR="$CONFIG_DIR/plugins"
 FONT_FACE="NotoMono Nerd Font Mono:Regular"
 
 # Dictionary of colors
-BG=0xBB142128 #142128BB
-LABEL=0xFF79d0ed #79d0edFF
-ICON=0xFFFFbdd5 #FFbdd5FF
-TRANS=0x00000000 #00000000
-WHITE=0xFFFFFFFF #FFFFFFFF
-BLACK=0xFF000000 #000000FF
+BG=0xBB142128         #142128BB
+LABEL=0xFF79d0ed      #79d0edFF
+ICON=0xFFFFbdd5       #FFbdd5FF
+TRANS=0x00000000      #00000000
+WHITE=0xFFFFFFFF      #FFFFFFFF
+BLACK=0xFF000000      #000000FF
 DARK_MAGENTA=0xb35b7b #b35b7bFF
-YELLOW_BG=0xFFffe894 #ffe894FF
-MAG_FG=0xFFb35b7b #b35b7bFF
+YELLOW_BG=0xFFffe894  #ffe894FF
+MAG_FG=0xFFb35b7b     #b35b7bFF
+DARK_BG=0xff1c2a36    #1c2a36ff
 
 ##### Bar Appearance #####
 # Configuring the general appearance of the bar.
@@ -24,62 +25,97 @@ MAG_FG=0xFFb35b7b #b35b7bFF
 # If you are looking for other colors, see the color picker:
 # https://felixkratz.github.io/SketchyBar/config/tricks#color-picker
 
-sketchybar --bar position=top height=64 blur_radius=0 color=$BLACK sticky=on
+sketchybar --bar position=top height=64 blur_radius=0 color=$DARK_BG sticky=on
 
 ##### Changing Defaults #####
 # We now change some default values, which are applied to all further items.
 # For a full list of all available item properties see:
 # https://felixkratz.github.io/SketchyBar/config/items
 
-
 default=(
-  padding_left=0
-  padding_right=0
-  icon.font="$FONT_FACE:28.0"
-  label.font="$FONT_FACE:18.0"
-  icon.color=$ICON
-  label.color=$LABEL
-  icon.padding_left=4
-  icon.padding_right=4
-  label.padding_left=4
-  label.padding_right=4
+      padding_left=0
+      padding_right=0
+      icon.font="$FONT_FACE:28.0"
+      label.font="$FONT_FACE:18.0"
+      icon.color=$ICON
+      label.color=$LABEL
+      icon.padding_left=4
+      icon.padding_right=4
+      label.padding_left=4
+      label.padding_right=4
 )
 sketchybar --default "${default[@]}"
 
 sketchybar --add item apple_menu_left left \
-            --set apple_menu_left icon="" \
-                  icon.font="$FONT_FACE:30.0" \
-                  icon.color=$LABEL \
-                  icon.padding_left=0 \
-                  icon.padding_right=0 \
-                  padding_left=0 \
-                  padding_right=-1 \
-                  icon.y_offset=1 \
-                  background.color=$TRANS \
-                  label.drawing=off \
-            --add item apple_menu left \
-            --set apple_menu icon="" \
-                  icon.font="$FONT_FACE:35.0" \
-                  icon.color=$BG \
-                  label.color=$BG \
-                  icon.padding_left=0 \
-                  icon.padding_right=0 \
-                  padding_left=0 \
-                  padding_right=0 \
-                  background.color=$LABEL \
-                  background.height=36 \
-                  label="$(hostname -s)" \
-            --add item apple_menu_right left \
-            --set apple_menu_right icon="" \
-                  icon.font="$FONT_FACE:30.0" \
-                  icon.color=$LABEL \
-                  icon.padding_left=0 \
-                  icon.padding_right=0 \
-                  padding_left=0 \
-                  padding_right=1 \
-                  icon.y_offset=0.5 \
-                  background.color=$TRANS \
-                  label.drawing=off
+      --set apple_menu_left icon="" \
+      icon.font="$FONT_FACE:30.0" \
+      icon.color=$LABEL \
+      icon.padding_left=0 \
+      icon.padding_right=0 \
+      padding_left=0 \
+      padding_right=-1 \
+      icon.y_offset=1 \
+      background.color=$TRANS \
+      label.drawing=off \
+      --add item apple_menu left \
+      --set apple_menu icon="" \
+      icon.font="$FONT_FACE:35.0" \
+      icon.color=$BG \
+      label.color=$BG \
+      icon.padding_left=0 \
+      icon.padding_right=0 \
+      padding_left=0 \
+      padding_right=0 \
+      background.color=$LABEL \
+      background.height=36 \
+      label="$(hostname -s)" \
+      click_script="sketchybar --set \$NAME popup.drawing=toggle" \
+      popup.background.color=$LABEL \
+      --add item apple_menu_right left \
+      --set apple_menu_right icon="" \
+      icon.font="$FONT_FACE:30.0" \
+      icon.color=$LABEL \
+      icon.padding_left=0 \
+      icon.padding_right=0 \
+      padding_left=0 \
+      padding_right=1 \
+      icon.y_offset=0.5 \
+      background.color=$TRANS \
+      label.drawing=off
+
+apple_menu_popup_shutdown=(
+      icon=""
+      label="Shutdown"
+      icon.font="$FONT_FACE:30.0"
+      icon.color=$BG
+      label.color=$BG
+      icon.padding_left=0
+      icon.padding_right=8
+      padding_left=16
+      padding_right=16
+      background.color=$TRANS
+      click_script="osascript -e 'tell application \"System Events\" to shut down'; sketchybar --set apple_menu popup.drawing=off"
+)
+
+sketchybar --add item apple_menu_popup.shutdown popup.apple_menu \
+      --set apple_menu_popup.shutdown "${apple_menu_popup_shutdown[@]}"
+
+apple_menu_popup_reload=(
+      icon=""
+      label="Reload"
+      icon.font="$FONT_FACE:30.0"
+      icon.color=$BG
+      label.color=$BG
+      icon.padding_left=0
+      icon.padding_right=8
+      padding_left=16
+      padding_right=16
+      background.color=$TRANS
+      click_script="sketchybar --reload; sketchybar --set apple_menu popup.drawing=off"
+)
+
+sketchybar --add item apple_menu_popup.reload popup.apple_menu \
+      --set apple_menu_popup.reload "${apple_menu_popup_reload[@]}"
 
 ##### Adding Mission Control Space Indicators #####
 # Let's add some mission control spaces:
@@ -87,150 +123,227 @@ sketchybar --add item apple_menu_left left \
 # to indicate active and available mission control spaces.
 
 sketchybar --add item space_before left \
-            --set space_before icon="" \
-                  icon.font="$FONT_FACE:30.0" \
-                  icon.color=$ICON \
-                  icon.padding_left=0 \
-                  icon.padding_right=0 \
-                  padding_left=-16 \
-                  padding_right=-1 \
-                  icon.y_offset=1 \
-                  background.color=$TRANS \
-                  label.drawing=off
+      --set space_before icon="" \
+      icon.font="$FONT_FACE:30.0" \
+      icon.color=$ICON \
+      icon.padding_left=0 \
+      icon.padding_right=0 \
+      padding_left=-16 \
+      padding_right=-1 \
+      icon.y_offset=1 \
+      background.color=$TRANS \
+      label.drawing=off
 
-SPACE_ICONS=("" "󰚇" "" "󰚅" "05" "06" "07" "08" "09" "10")
-for i in "${!SPACE_ICONS[@]}"
-do
-  sid="$(($i+1))"
-  space=(
-    space="$sid"
-    icon="${SPACE_ICONS[i]}"
-    padding_left=0
-    padding_right=0
-    icon.padding_left=14
-    icon.padding_right=14
-    icon.color=$WHITE
-    background.color=$ICON
-    background.height=36
-    label.drawing=off
-    script="$PLUGIN_DIR/space.sh"
-    click_script="yabai -m space --focus $sid"
-  )
-  sketchybar --add space space."$sid" left \
-             --set space."$sid" "${space[@]}"
+sketchybar --add event aerospace_workspace_change
+SPACE_ICONS=("" "" "" "󰚇" "" "" "󰚅" "06" "07" "08" "09")
+WORKSPACES=("W" "C" "A" "M" "D" "E" "O" "6" "7" "8" "9")
+for i in "${!SPACE_ICONS[@]}"; do
+      sid="${WORKSPACES[$i]}"
+      workspace=(
+            workspace="$sid"
+            icon="${SPACE_ICONS[i]}"
+            padding_left=0
+            padding_right=0
+            icon.padding_left=14
+            icon.padding_right=14
+            icon.color=$WHITE
+            background.color=$ICON
+            background.height=36
+            label.drawing=off
+            script="$PLUGIN_DIR/workspace.sh $sid"
+            click_script="aerospace workspace $sid"
+      )
+      sketchybar --add workspace workspace."$sid" left \
+            --subscribe workspace."$sid" aerospace_workspace_change \
+            --set workspace."$sid" "${workspace[@]}"
 done
 
-##### Adding Left [+] space item #####
-# We add a space item to the left side of the bar, which is used to create a space using yabai 'yabai -m space --create'
-
-newspace=(
-  icon=""
-  icon.padding_left=14
-  icon.padding_right=7
-  icon.color=$BLACK
-  background.color=$ICON
-  background.height=36
-  label.drawing=off
-  click_script="yabai -m space --create"
-)
-sketchybar --add item newspace left --set newspace "${newspace[@]}"
-
 sketchybar --add item space_after left \
-            --set space_after icon="" \
-                  icon.font="$FONT_FACE:30.0" \
-                  icon.color=$ICON \
-                  icon.padding_left=-1 \
-                  icon.padding_right=0 \
-                  padding_left=-1 \
-                  padding_right=-16 \
-                  icon.y_offset=0 \
-                  background.color=$TRANS \
-                  label.drawing=off
+      --set space_after icon="" \
+      icon.font="$FONT_FACE:30.0" \
+      icon.color=$ICON \
+      icon.padding_left=-1 \
+      icon.padding_right=0 \
+      padding_left=-1 \
+      padding_right=-16 \
+      icon.y_offset=0 \
+      background.color=$TRANS \
+      label.drawing=off
 
 restart=(
-  icon=""
-  icon.padding_left=14
-  icon.padding_right=14
-  icon.color=$BLACK
-  background.color=$YELLOW_BG
-  background.height=36
-  label.drawing=off
-  click_script="/usr/local/bin/win"
+      icon=""
+      icon.padding_left=14
+      icon.padding_right=14
+      icon.color=$BLACK
+      background.color=$YELLOW_BG
+      background.height=36
+      label.drawing=off
+      click_script="/usr/local/bin/win"
 )
 
 sketchybar --add item restart_before left \
-            --set restart_before icon="" \
-                  icon.font="$FONT_FACE:30.0" \
-                  icon.color=$YELLOW_BG \
-                  icon.padding_left=0 \
-                  icon.padding_right=0 \
-                  padding_left=1 \
-                  padding_right=-1 \
-                  icon.y_offset=1 \
-                  background.color=$TRANS \
-                  label.drawing=off
+      --set restart_before icon="" \
+      icon.font="$FONT_FACE:30.0" \
+      icon.color=$YELLOW_BG \
+      icon.padding_left=0 \
+      icon.padding_right=0 \
+      padding_left=1 \
+      padding_right=-1 \
+      icon.y_offset=1 \
+      background.color=$TRANS \
+      label.drawing=off
 
 sketchybar --add item restart left --set restart "${restart[@]}"
 
 sketchybar --add item restart_after left \
-            --set restart_after icon="" \
-                  icon.font="$FONT_FACE:30.0" \
-                  icon.color=$YELLOW_BG \
-                  icon.padding_left=-1 \
-                  icon.padding_right=0 \
-                  padding_left=0 \
-                  padding_right=-16 \
-                  icon.y_offset=0 \
-                  background.color=$TRANS \
-                  label.drawing=off
+      --set restart_after icon="" \
+      icon.font="$FONT_FACE:30.0" \
+      icon.color=$YELLOW_BG \
+      icon.padding_left=-1 \
+      icon.padding_right=0 \
+      padding_left=0 \
+      padding_right=-16 \
+      icon.y_offset=0 \
+      background.color=$TRANS \
+      label.drawing=off
+
+GREEN_BG=0xFF6fffd4 #6fffd4FF
+GREEN_FG=0xFF23473e #23473eFF
+
+projects=(
+      icon=""
+      icon.padding_left=14
+      icon.padding_right=14
+      icon.color=$GREEN_FG
+      background.color=$GREEN_BG
+      background.height=36
+      label.drawing=off
+      click_script="sketchybar --set \$NAME popup.drawing=toggle"
+      popup.background.color=$GREEN_BG
+      popup.height=26
+      script="$PLUGIN_DIR/list_projects.sh"
+)
+
+projects_before=(
+      icon=""
+      icon.font="$FONT_FACE:30.0"
+      icon.color=$GREEN_BG
+      icon.padding_left=0
+      icon.padding_right=0
+      padding_left=1
+      padding_right=-1
+      icon.y_offset=1
+      background.color=$TRANS
+      label.drawing=off
+)
+
+projects_after=(
+      icon=""
+      icon.font="$FONT_FACE:30.0"
+      icon.color=$GREEN_BG
+      icon.padding_left=-1
+      icon.padding_right=0
+      padding_left=0
+      padding_right=-16
+      icon.y_offset=0
+      background.color=$TRANS
+      label.drawing=off
+)
+
+sketchybar --add item projects_before left \
+      --set projects_before "${projects_before[@]}"
+
+sketchybar --add item projects left \
+      --set projects "${projects[@]}"
+
+sketchybar --add item projects_after left \
+      --set projects_after "${projects_after[@]}"
 
 ##### Adding Left Items #####
 # We add some regular items to the left side of the bar, where
 # only the properties deviating from the current defaults need to be set
 
 sketchybar --add item front_app.left left \
-           --set front_app.left icon="" \
-                 icon.font="$FONT_FACE:30.0" \
-                 icon.color=$WHITE \
-                 icon.padding_left=0 \
-                 icon.padding_right=0 \
-                 padding_right=-1 \
-                 icon.y_offset=1 \
-                 background.color=$TRANS \
-                 label.drawing=off \
-           --add item front_app.icon left \
-           --set front_app.icon icon= \
-                 label.drawing=off \
-                 icon.font="$FONT_FACE:21.0" \
-                 icon.color=0xFFb35b7b \
-                 icon.padding_left=7 \
-                 icon.padding_right=7 \
-                 background.color=$WHITE \
-                 background.height=36 \
-           --add item front_app left \
-           --set front_app icon.drawing=off \
-                 label.color=0xFFb35b7b \
-                 label.padding_right=14 \
-                 background.color=$WHITE \
-                 background.height=36 \
-                 script="$PLUGIN_DIR/front_app.sh" \
-           --add item front_app.separator left \
-           --set front_app.separator \
-                 icon="" \
-                 icon.font="$FONT_FACE:30.0" \
-                 icon.color=$WHITE \
-                 icon.padding_left=0 \
-                 icon.padding_right=0 \
-                 icon.y_offset=1 \
-                 background.color=0x00000000 \
-                 label.drawing=off
+      --set front_app.left icon="" \
+      icon.font="$FONT_FACE:30.0" \
+      icon.color=$WHITE \
+      icon.padding_left=0 \
+      icon.padding_right=0 \
+      padding_right=-1 \
+      icon.y_offset=1 \
+      background.color=$TRANS \
+      label.drawing=off \
+      --add item front_app.icon left \
+      --set front_app.icon icon= \
+      label.drawing=off \
+      icon.font="$FONT_FACE:21.0" \
+      icon.color=0xFFb35b7b \
+      icon.padding_left=7 \
+      icon.padding_right=7 \
+      background.color=$WHITE \
+      background.height=36 \
+      --add item front_app left \
+      --set front_app icon.drawing=off \
+      label.color=0xFFb35b7b \
+      label.padding_right=14 \
+      background.color=$WHITE \
+      background.height=36 \
+      script="$PLUGIN_DIR/front_app.sh" \
+      popup.background.color=$WHITE \
+      click_script="sketchybar --set \$NAME popup.drawing=toggle" \
+      --add item front_app.separator left \
+      --set front_app.separator \
+      icon="" \
+      icon.font="$FONT_FACE:30.0" \
+      icon.color=$WHITE \
+      icon.padding_left=0 \
+      icon.padding_right=0 \
+      icon.y_offset=1 \
+      background.color=0x00000000 \
+      label.drawing=off
 
 sketchybar --add bracket front_app_bracket left \
-                 front_app.left \
-                 front_app.icon \
-                 front_app \
-                 front_app.separator \
-           --subscribe front_app front_app_switched
+      front_app.left \
+      front_app.icon \
+      front_app \
+      front_app.separator \
+      --subscribe front_app front_app_switched
+
+front_app_popup_quit=(
+      icon=""
+      label="Quit"
+      icon.font="$FONT_FACE:30.0"
+      icon.color=$BG
+      label.color=$BG
+      icon.padding_left=0
+      icon.padding_right=8
+      padding_left=16
+      padding_right=16
+      background.color=$TRANS
+      script="$PLUGIN_DIR/front_app_quit.sh"
+)
+
+sketchybar --add item front_app_popup.quit popup.front_app \
+      --set front_app_popup.quit "${front_app_popup_quit[@]}" \
+      --subscribe front_app_popup.quit front_app_switched
+
+front_app_popup_settings=(
+      icon=""
+      label="Settings"
+      icon.font="$FONT_FACE:30.0"
+      icon.color=$BG
+      label.color=$BG
+      icon.padding_left=0
+      icon.padding_right=8
+      padding_left=16
+      padding_right=16
+      background.color=$TRANS
+      script="$PLUGIN_DIR/front_app_settings.sh"
+)
+
+sketchybar --add item front_app_popup.settings popup.front_app \
+      --set front_app_popup.settings "${front_app_popup_settings[@]}" \
+      --subscribe front_app_popup.settings front_app_switched
 
 ##### Adding Right Items #####
 # In the same way as the left items we can add items to the right side.
@@ -243,106 +356,104 @@ sketchybar --add bracket front_app_bracket left \
 # volume is registered. More info about the event system can be found here:
 # https://felixkratz.github.io/SketchyBar/config/events
 
-sketchybar  --add item right_before right \
-            --set right_before \
-                  icon="" \
-                  icon.font="$FONT_FACE:30.0" \
-                  icon.color=0xFF8afee1 \
-                  icon.padding_left=0 \
-                  icon.padding_right=0 \
-                  icon.y_offset=1 \
-                  background.color=0x00000000 \
-                  label.drawing=off \
-            --add item clock right \
-            --set clock update_freq=1 \
-                  icon= \
-                  background.color=0xFF8afee1 \
-                  background.height=36 \
-                  label.padding_right=7 \
-                  label.color=0xFF637d6b \
-                  icon.color=0xFF637d6b \
-                  icon.padding_left=14 \
-                  icon.padding_right=0 \
-                  script="$PLUGIN_DIR/clock.sh" \
-            --add item clock_after right \
-            --set clock_after \
-                  icon="" \
-                  icon.font="$FONT_FACE:30.5" \
-                  icon.color=0xFF8afee1 \
-                  icon.padding_left=0 \
-                  icon.padding_right=0 \
-                  padding_right=-1 \
-                  icon.y_offset=1 \
-                  background.color=0x00000000 \
-                  label.drawing=off \
-            --add item volume_before right \
-            --set volume_before \
-                  icon="" \
-                  icon.font="$FONT_FACE:30.5" \
-                  icon.color=$YELLOW_BG \
-                  icon.padding_left=0 \
-                  icon.padding_right=0 \
-                  padding_right=-16 \
-                  icon.y_offset=1 \
-                  background.color=0x00000000 \
-                  label.drawing=off \
-            --add item volume right \
-            --set volume script="$PLUGIN_DIR/volume.sh" \
-                  background.color=$YELLOW_BG \
-                  background.height=36 \
-                  icon.color=$BLACK \
-                  icon.padding_left=14 \
-                  icon.padding_right=7 \
-                  label.color=$BLACK \
-                  label.padding_left=0 \
-                  label.padding_right=14 \
-            --subscribe volume volume_change \
-            --add item volume_after right \
-            --set volume_after \
-                  icon="" \
-                  icon.font="$FONT_FACE:30.5" \
-                  icon.color=$YELLOW_BG \
-                  icon.padding_left=0 \
-                  icon.padding_right=0 \
-                  padding_right=-1 \
-                  icon.y_offset=1 \
-                  background.color=0x00000000 \
-                  label.drawing=off \
-            --add item battery_before right \
-            --set battery_before \
-                  icon="" \
-                  icon.font="$FONT_FACE:30.5" \
-                  icon.color=$WHITE \
-                  icon.padding_left=0 \
-                  icon.padding_right=0 \
-                  padding_right=-16 \
-                  icon.y_offset=1 \
-                  background.color=0x00000000 \
-                  label.drawing=off \
-            --add item battery right \
-            --set battery script="$PLUGIN_DIR/battery.sh" \
-                  background.color=$WHITE \
-                  background.height=36 \
-                  icon.color=$MAG_FG \
-                  icon.padding_left=14 \
-                  icon.padding_right=7 \
-                  label.color=$MAG_FG \
-                  label.padding_left=0 \
-                  label.padding_right=14 \
-            --subscribe battery system_woke power_source_change \
-            --add item battery_after right \
-            --set battery_after \
-                  icon="" \
-                  icon.font="$FONT_FACE:30.5" \
-                  icon.color=$WHITE \
-                  icon.padding_left=0 \
-                  icon.padding_right=0 \
-                  padding_right=-1 \
-                  icon.y_offset=1 \
-                  background.color=0x00000000 \
-                  label.drawing=off
-
-iStatPrefix="iStat Menus Status,com.bjango.istatmenus"
+sketchybar --add item right_before right \
+      --set right_before \
+      icon="" \
+      icon.font="$FONT_FACE:30.0" \
+      icon.color=0xFF8afee1 \
+      icon.padding_left=0 \
+      icon.padding_right=0 \
+      icon.y_offset=1 \
+      background.color=0x00000000 \
+      label.drawing=off \
+      --add item clock right \
+      --set clock update_freq=1 \
+      icon= \
+      background.color=0xFF8afee1 \
+      background.height=36 \
+      label.padding_right=7 \
+      label.color=0xFF637d6b \
+      icon.color=0xFF637d6b \
+      icon.padding_left=14 \
+      icon.padding_right=0 \
+      script="$PLUGIN_DIR/clock.sh" \
+      --add item clock_after right \
+      --set clock_after \
+      icon="" \
+      icon.font="$FONT_FACE:30.5" \
+      icon.color=0xFF8afee1 \
+      icon.padding_left=0 \
+      icon.padding_right=0 \
+      padding_right=-1 \
+      icon.y_offset=1 \
+      background.color=0x00000000 \
+      label.drawing=off \
+      --add item volume_before right \
+      --set volume_before \
+      icon="" \
+      icon.font="$FONT_FACE:30.5" \
+      icon.color=$YELLOW_BG \
+      icon.padding_left=0 \
+      icon.padding_right=0 \
+      padding_right=-16 \
+      icon.y_offset=1 \
+      background.color=0x00000000 \
+      label.drawing=off \
+      --add item volume right \
+      --set volume script="$PLUGIN_DIR/volume.sh" \
+      background.color=$YELLOW_BG \
+      background.height=36 \
+      icon.color=$BLACK \
+      icon.padding_left=14 \
+      icon.padding_right=7 \
+      label.color=$BLACK \
+      label.padding_left=0 \
+      label.padding_right=14 \
+      --subscribe volume volume_change \
+      --add item volume_after right \
+      --set volume_after \
+      icon="" \
+      icon.font="$FONT_FACE:30.5" \
+      icon.color=$YELLOW_BG \
+      icon.padding_left=0 \
+      icon.padding_right=0 \
+      padding_right=-1 \
+      icon.y_offset=1 \
+      background.color=0x00000000 \
+      label.drawing=off \
+      --add item battery_before right \
+      --set battery_before \
+      icon="" \
+      icon.font="$FONT_FACE:30.5" \
+      icon.color=$WHITE \
+      icon.padding_left=0 \
+      icon.padding_right=0 \
+      padding_right=-16 \
+      icon.y_offset=1 \
+      background.color=0x00000000 \
+      label.drawing=off \
+      --add item battery right \
+      --set battery script="$PLUGIN_DIR/battery.sh" \
+      background.color=$WHITE \
+      background.height=36 \
+      icon.color=$MAG_FG \
+      icon.padding_left=14 \
+      icon.padding_right=7 \
+      label.color=$MAG_FG \
+      label.padding_left=0 \
+      label.padding_right=14 \
+      --subscribe battery system_woke power_source_change \
+      --add item battery_after right \
+      --set battery_after \
+      icon="" \
+      icon.font="$FONT_FACE:30.5" \
+      icon.color=$WHITE \
+      icon.padding_left=0 \
+      icon.padding_right=0 \
+      padding_right=-1 \
+      icon.y_offset=1 \
+      background.color=0x00000000 \
+      label.drawing=off
 
 sketchybar --add alias "Notion Calendar" right
 
