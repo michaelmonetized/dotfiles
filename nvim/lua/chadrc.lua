@@ -5,7 +5,7 @@
 local M = {}
 
 M.base46 = {
-  theme = "nightfox",
+  theme = "catppuccin",
 
   hl_override = {
     Comment = {
@@ -16,6 +16,17 @@ M.base46 = {
       italic = false,
       fg = "#d2f4ff",
     },
+  },
+}
+
+M.ui = {
+  statusline = {
+    theme = "minimal", -- default/vscode/vscode_colored/minimal
+    -- default/round/block/arrow separators work only for default statusline theme
+    -- round and block will work for minimal theme only
+    separator_style = "round",
+    order = nil,
+    modules = nil,
   },
 }
 
