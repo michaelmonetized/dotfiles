@@ -4,19 +4,19 @@
 
 if patched_font_in_use; then
 	TMUX_POWERLINE_SEPARATOR_LEFT_BOLD=""
-	TMUX_POWERLINE_SEPARATOR_LEFT_THIN=""
+	TMUX_POWERLINE_SEPARATOR_LEFT_THIN=""
 	TMUX_POWERLINE_SEPARATOR_RIGHT_BOLD=""
 	TMUX_POWERLINE_SEPARATOR_RIGHT_THIN=""
 else
 	TMUX_POWERLINE_SEPARATOR_LEFT_BOLD=""
-	TMUX_POWERLINE_SEPARATOR_LEFT_THIN=""
+	TMUX_POWERLINE_SEPARATOR_LEFT_THIN=""
 	TMUX_POWERLINE_SEPARATOR_RIGHT_BOLD=""
 	TMUX_POWERLINE_SEPARATOR_RIGHT_THIN=""
 fi
 
 # See Color formatting section below for details on what colors can be used here.
 TMUX_POWERLINE_DEFAULT_BACKGROUND_COLOR=${TMUX_POWERLINE_DEFAULT_BACKGROUND_COLOR:-'0'}
-TMUX_POWERLINE_DEFAULT_FOREGROUND_COLOR=${TMUX_POWERLINE_DEFAULT_FOREGROUND_COLOR:-'0'}
+TMUX_POWERLINE_DEFAULT_FOREGROUND_COLOR=${TMUX_POWERLINE_DEFAULT_FOREGROUND_COLOR:-'15'}
 # shellcheck disable=SC2034
 TMUX_POWERLINE_SEG_AIR_COLOR=$(air_color)
 
@@ -29,13 +29,12 @@ TMUX_POWERLINE_DEFAULT_RIGHTSIDE_SEPARATOR=${TMUX_POWERLINE_DEFAULT_RIGHTSIDE_SE
 # shellcheck disable=SC2128
 if [ -z "$TMUX_POWERLINE_WINDOW_STATUS_CURRENT" ]; then
 	TMUX_POWERLINE_WINDOW_STATUS_CURRENT=(
-		"#[$(format inverse)]"
-		"$TMUX_POWERLINE_DEFAULT_LEFTSIDE_SEPARATOR"
-		" #I#F "
-		"$TMUX_POWERLINE_SEPARATOR_RIGHT_THIN"
-		" #W "
 		"#[$(format regular)]"
-		"$TMUX_POWERLINE_DEFAULT_LEFTSIDE_SEPARATOR"
+		""
+		"#[$(format inverse)]"
+		"  #W "
+		"#[$(format regular)]"
+		""
 	)
 fi
 
@@ -52,7 +51,7 @@ if [ -z "$TMUX_POWERLINE_WINDOW_STATUS_FORMAT" ]; then
 		"#[$(format regular)]"
 		"  #I#{?window_flags,#F, } "
 		"$TMUX_POWERLINE_SEPARATOR_RIGHT_THIN"
-		" #W "
+		"  #W "
 	)
 fi
 
@@ -102,9 +101,12 @@ fi
 # shellcheck disable=SC1143,SC2128
 if [ -z "$TMUX_POWERLINE_LEFT_STATUS_SEGMENTS" ]; then
 	TMUX_POWERLINE_LEFT_STATUS_SEGMENTS=(
-		"left 0 5 default_separator no_sep_bg_color no_sep_fg_color both_disable separator_disable"
-		"tmux_session_info 5 15"
-		"load 15 5"
+		"left 0 6 default_separator no_sep_bg_color no_sep_fg_color both_disable separator_disable"
+		"tmux_session_info 6 0 "
+		#"gcalcli 11 0 "
+		"mailcount 13 0 "
+		"tmux_mem_cpu_load 11 0 "
+		"macos_notification_count 10 0 "
 		#"mode_indicator 9 0"
 		#"ifstat 15 5"
 		#"ifstat_sys 15 5"
@@ -125,11 +127,13 @@ if [ -z "$TMUX_POWERLINE_RIGHT_STATUS_SEGMENTS" ]; then
 		#"earthquake 3 0"
 		#"pwd 0 15"
 		#"macos_notification_count 29 255"
-		"mailcount 1 15"
 		#"cpu 240 136"
-		"battery 6 15"
-		"time 15 6"
+		"battery 15 5"
+		"uptime 11 0 "
+    "date_day 10 0 "
+		"date 10 0 default_separator no_sep_bg_color no_sep_fg_color left_disable separator_disable"
 		#"tmux_mem_cpu_load 234 136"
+		"time 10 0 default_separator no_sep_bg_color no_sep_fg_color both_disable separator_disable"
 		#"air ${TMUX_POWERLINE_SEG_AIR_COLOR} 255"
 		#"weather 37 255"
 		#"rainbarf 0 ${TMUX_POWERLINE_DEFAULT_FOREGROUND_COLOR}"
@@ -138,6 +142,6 @@ if [ -z "$TMUX_POWERLINE_RIGHT_STATUS_SEGMENTS" ]; then
 		#"date 235 136 ${TMUX_POWERLINE_SEPARATOR_LEFT_THIN}"
 		#"time 235 136 ${TMUX_POWERLINE_SEPARATOR_LEFT_THIN}"
 		#"utc_time 235 136 ${TMUX_POWERLINE_SEPARATOR_LEFT_THIN}"
-		"right 0 15 default_separator no_sep_bg_color no_sep_fg_color both_disable separator_disable"
+		"right 0 10 default_separator no_sep_bg_color no_sep_fg_color both_disable separator_disable"
 	)
 fi
