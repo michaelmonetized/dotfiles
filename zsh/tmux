@@ -51,38 +51,10 @@ set -g @floax-text-color 'blue'
 set -g @floax-bind 'p'
 set -g @floax-change-path 'false'
 
-# set -g @plugin 'catppuccin/tmux'
-# set -g @catppuccin_window_left_separator " "
-# set -g @catppuccin_window_right_separator "█ "
-# set -g @catppuccin_window_middle_separator "█"
-# set -g @catppuccin_window_connect_separator "no"
-# set -g @catppuccin_window_number_position "left"
-# set -g @catppuccin_window_default_fill "number"
-# set -g @catppuccin_window_current_fill "number"
-# set -g @catppuccin_window_current_text " "
-# set -g @catppuccin_status_modules_right "session date_time bettery"
-# set -g @catppuccin_status_modules_left "user host application"
-# set -g @catppuccin_status_left_separator  " "
-# set -g @catppuccin_status_middle_separator  ""
-# set -g @catppuccin_status_right_separator "█ "
-# set -g @catppuccin_status_fill "all"
-# set -g @catppuccin_status_[session] _left_separator  " "
-# set -g @catppuccin_status_[session]_ middle_separator  ""
-# set -g @catppuccin_status_[session]_right_separator "█ "
-# set -g @catppuccin_status_[date_time]_left_separator  " "
-# set -g @catppuccin_status_[date_time]_middle_separator  ""
-# set -g @catppuccin_status_[date_time]_right_separator "█ "
-# set -g @catppuccin_status_connect_separator "no"
-# set -g @catppuccin_status_background "default"
-
-# set -g @plugin 'tmux-plugins/tmux-battery'
-
 set -g @resurrect-capture-pane-contents 'off'
 set -g @continuum-restore 'off'
 
 set -g status-style 'fg=color13'
-
-set-hook -g after-new-session 'display-message "Welcome to your :p new tmux session!"'
 
 set -g @sessionx-custom-paths "$HOME/Projects,$HOME/Library/Mobile Documents/com~apple~CloudDocs/Projects"
 set -g @sessionx-custom-paths-subdirectories 'false'
