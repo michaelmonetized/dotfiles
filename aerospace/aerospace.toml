@@ -92,8 +92,8 @@ alt-enter = 'exec-and-forget open -n /Applications/WezTerm.app'
 alt-leftSquareBracket = 'exec-and-forget open -n "/Applications/Visual Studio Code.app"'
 alt-2 = 'exec-and-forget open -n "/Applications/Spike.app"'
 alt-n = 'exec-and-forget open -n "/Applications/Notion.app"'
-# alt-v = 'exec-and-forget open -n "/Users/michael/Applications/Google Voice.app"'
-# alt-shift-v = 'resize width 580'
+alt-s = 'exec-and-forget open -n "/Users/michael/Applications/Voice.app"'
+alt-shift-s = 'resize width 580'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#layout
 alt-slash = 'layout tiles horizontal vertical'

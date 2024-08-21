@@ -25,7 +25,7 @@ DARK_BG=0xff1c2a36    #1c2a36ff
 # If you are looking for other colors, see the color picker:
 # https://felixkratz.github.io/SketchyBar/config/tricks#color-picker
 
-sketchybar --bar position=top height=64 blur_radius=0 color=0x00000000 sticky=on
+sketchybar --bar position=top height=64 blur_radius=13 color=0x771c2a36 sticky=on
 
 ##### Changing Defaults #####
 # We now change some default values, which are applied to all further items.
@@ -99,6 +99,23 @@ apple_menu_popup_shutdown=(
 
 sketchybar --add item apple_menu_popup.shutdown popup.apple_menu \
       --set apple_menu_popup.shutdown "${apple_menu_popup_shutdown[@]}"
+
+apple_menu_popup_restart=(
+      icon=""
+      label="Restart"
+      icon.font="$FONT_FACE:30.0"
+      icon.color=$BG
+      label.color=$BG
+      icon.padding_left=0
+      icon.padding_right=8
+      padding_left=16
+      padding_right=16
+      background.color=$TRANS
+      click_script="osascript -e 'tell application \"System Events\" to restart'; sketchybar --set apple_menu popup.drawing=off"
+)
+
+sketchybar --add item apple_menu_popup.restart popup.apple_menu \
+      --set apple_menu_popup.restart "${apple_menu_popup_restart[@]}"
 
 apple_menu_popup_reload=(
       icon=""
