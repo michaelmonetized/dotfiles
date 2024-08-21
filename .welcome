@@ -1,0 +1,22 @@
+#!/bin/zsh
+
+./zsh/welcome
+echo "Welcome to the dotfiles!"
+
+# selected=`fzf --ansi --preview 'bat --color=always --style=header,grid --line-range :500 {}' --preview-window 'right:50%' --bind 'ctrl-d:preview-page-down' --bind 'ctrl-u:preview-page-up'`
+#
+# if [[ $selected == "" ]]; then
+#   exit
+# fi
+#
+# if [ -d "$selected" ]; then
+#     cd "$selected"
+# fi
+#
+# mime=$(file --mime-type -b "$selected")
+#
+# if [[ $mime == text/* ]]; then
+#     nvim "$selected"
+# else
+#     open "$selected"
+# fi
