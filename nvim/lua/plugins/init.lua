@@ -18,7 +18,7 @@ return {
         keymaps = {
           accept_suggestion = "<Tab>",
           clear_suggestion = "<C-]>",
-          accept_word = "<C-j>",
+          accept_word = "<C-.>",
         },
       }
     end,
@@ -44,5 +44,14 @@ return {
     opts = {
       ensure_installed = { "vim", "lua", "vimdoc", "html", "css" },
     },
+  },
+  {
+    "wfxr/minimap.vim",
+    lazy = false,
+    cmd = { "Minimap", "MinimapClose", "MinimapToggle", "MinimapRefresh", "MinimapUpdateHighlight" },
+    config = function()
+      vim.cmd "let g:minimap_auto_start = 1"
+      vim.cmd "let g:minimap_auto_start_win_enter = 1"
+    end,
   },
 }
