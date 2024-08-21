@@ -1,7 +1,7 @@
 PATH="/usr/local/bin:$PATH"
 
 # Editor Config
-export EDITOR=micro
+export EDITOR=nvim
 export VISUAL="$EDITOR"
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
