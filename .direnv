@@ -1,0 +1,6 @@
+export $DOTFILES=$PWD
+export $ZSH=$DOTFILES/zsh
+export $ZDOTDIR=$DOTFILES
+export $PATH=$PATH:$DOTFILES/bin
+export $PATH=$PATH:$DOTFILES/nvim/bin
+
