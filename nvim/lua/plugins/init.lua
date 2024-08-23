@@ -1,7 +1,20 @@
 return {
   {
+    "supermaven-inc/supermaven-nvim",
+    lazy = false,
+    config = function()
+      require("supermaven-nvim").setup {
+        keymaps = {
+          accept_word = "<c-a>",
+          accept_suggestion = "<Tab>",
+          clear_suggestion = "<C-]>",
+        },
+      }
+    end,
+  },
+  {
     "stevearc/conform.nvim",
-    event = "BufWritePre", -- uncomment for format on save
+    event = "BufWritePre",
     opts = require "configs.conform",
   },
   {
@@ -10,19 +23,7 @@ return {
       require "configs.lspconfig"
     end,
   },
-  {
-    "supermaven-inc/supermaven-nvim",
-    lazy = false,
-    config = function()
-      require("supermaven-nvim").setup {
-        keymaps = {
-          accept_suggestion = "<Tab>",
-          clear_suggestion = "<C-]>",
-          accept_word = "<C-.>",
-        },
-      }
-    end,
-  },
+
   {
     "xiyaowong/transparent.nvim",
     lazy = false,
