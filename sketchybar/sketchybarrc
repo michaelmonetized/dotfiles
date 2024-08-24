@@ -152,8 +152,8 @@ sketchybar --add item space_before left \
       label.drawing=off
 
 sketchybar --add event aerospace_workspace_change
-SPACE_ICONS=("" "" "" "󰚇" "" "" "󰚅" "06" "07" "08" "09")
-WORKSPACES=("W" "C" "A" "M" "D" "E" "O" "6" "7" "8" "9")
+SPACE_ICONS=("" "󰨞" "󰀹" "" "" "" "󰚅" "" "󰲪" "󰲬" "󰲮" "󰲰")
+ WORKSPACES=("W" "C" "A" "M" "D" "E" "O" "T" "6" "7" "8" "9")
 for i in "${!SPACE_ICONS[@]}"; do
       sid="${WORKSPACES[$i]}"
       workspace=(
