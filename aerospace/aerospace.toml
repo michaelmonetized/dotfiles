@@ -47,7 +47,7 @@ key-mapping.preset = 'qwerty'
 # See https://nikitabobko.github.io/AeroSpace/guide#on-focus-changed-callbacks
 # See https://nikitabobko.github.io/AeroSpace/commands#move-mouse
 #on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
-on-focus-changed = "move-mouse window-lazy-center"
+#on-focus-changed = "move-mouse window-lazy-center"
 
 # Gaps between windows (inner-*) and between monitor edges (outer-*).
 # Possible values:
@@ -132,6 +132,7 @@ alt-m = 'workspace M' # money
 alt-d = 'workspace D' # design
 alt-e = 'workspace E' # entertainment
 alt-o = 'workspace O' # Others
+alt-o = 'workspace T' # Twitch
 alt-6 = 'workspace 6'
 alt-7 = 'workspace 7'
 alt-8 = 'workspace 8'
@@ -144,6 +145,7 @@ alt-shift-d = 'move-node-to-workspace D'
 alt-shift-e = 'move-node-to-workspace E'
 alt-shift-m = 'move-node-to-workspace M'
 alt-shift-o = 'move-node-to-workspace O'
+alt-shift-o = 'move-node-to-workspace T'
 alt-shift-w = 'move-node-to-workspace W'
 alt-shift-6 = 'move-node-to-workspace 6'
 alt-shift-7 = 'move-node-to-workspace 7'
@@ -265,3 +267,9 @@ run = "move-node-to-workspace O"
 [[on-window-detected]]
 if.app-id = 'com.google.Chrome'
 run = "move-node-to-workspace O"
+
+# Twitch alt-t
+[[on-window-detected]]
+if.app.id = 'com.apple.Safari.WebApp.D3AEF5F5-11DA-4FA8-A9F4-6579CF9DAC13'
+run = "move-node-to-workspace T"
+
