@@ -1,4 +1,4 @@
-local options = {
+require("nvim-tree").setup {
   git = {
     enable = true,
   },
@@ -11,8 +11,7 @@ local options = {
     },
   },
   view = {
+    width = 30,
     side = "right",
   },
 }
-
-return options

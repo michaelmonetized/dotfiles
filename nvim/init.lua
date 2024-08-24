@@ -73,6 +73,11 @@ dofile(vim.g.base46_cache .. "defaults")
 dofile(vim.g.base46_cache .. "statusline")
 
 require "nvchad.autocmds"
+require "configs.gitsigns"
+require "configs.neogit"
+require "configs.noice"
+require "configs.nvimtree"
+require "configs.supermaven"
 
 vim.schedule(function()
   require "mappings"
