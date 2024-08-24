@@ -78,6 +78,7 @@ require "configs.neogit"
 require "configs.noice"
 require "configs.nvimtree"
 require "configs.supermaven"
+require "configs.notify"
 
 vim.schedule(function()
   require "mappings"
