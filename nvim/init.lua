@@ -77,5 +77,3 @@ require "nvchad.autocmds"
 vim.schedule(function()
   require "mappings"
 end)
-
--- vim.cmd [[hi NvimTreeNormal guibg=NONE ctermbg=NONE]]
