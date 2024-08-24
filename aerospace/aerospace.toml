@@ -244,22 +244,17 @@ run = "move-node-to-workspace M"
 if.app-id = 'com.apple.MobileSMS'
 run = "move-node-to-workspace M"
 
-[[on-window-detected]] # Finder
-if.app-id = 'com.apple.finder'
-run = "move-node-to-workspace M"
-
 [[on-window-detected]] # Skype
 if.app-id = 'com.skype.skype'
+run = "move-node-to-workspace M"
+
+[[on-window-detected]] # Voice
+if.app-id = 'com.apple.Safari.WebApp.4A35CA71-6AB2-407F-89DA-98F718BA0A39'
 run = "move-node-to-workspace M"
 
 # WezTerm alt-w
 [[on-window-detected]]
 if.app-id = 'com.github.wez.wezterm'
-run = "move-node-to-workspace W"
-
-# Perplexity alt-w
-[[on-window-detected]]
-if.app-id = 'com.apple.Safari.WebApp.6AADCAFC-A53B-439D-A9C5-083B68198FA2'
 run = "move-node-to-workspace W"
 
 # Other alt-o
