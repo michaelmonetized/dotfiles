@@ -33,8 +33,6 @@ bind k "kill-server"
 
 bind-key -r i run-shell "tmux neww '/Users/michael/.local/bin/chtsht'"
 
-set-option -g status-position top
-
 # List of plugins
 set -g @plugin 'tmux-plugins/tpm'
 set -g @plugin 'tmux-plugins/tmux-sensible'
@@ -48,11 +46,12 @@ set -g @plugin 'omerxx/tmux-sessionx'
 set -g @plugin 'fcsonline/tmux-thumbs'
 set -g @plugin 'sainnhe/tmux-fzf'
 set -g @plugin 'wfxr/tmux-fzf-url'
+set -g @plugin 'thewtex/tmux-mem-cpu-load'
 
 set -g @resurrect-capture-pane-contents 'on'
-set -g @continuum-restore 'on'
+set -g @continuum-restore 'off'
 
-set -g status-style 'fg=color13,bg=color8'
+set -g status-style 'fg=color13,bg=color235'
 
 set -g @sessionx-custom-paths "$HOME/Projects,$HOME/Library/Mobile Documents/com~apple~CloudDocs/Projects"
 set -g @sessionx-custom-paths-subdirectories 'false'

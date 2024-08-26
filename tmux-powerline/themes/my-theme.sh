@@ -15,7 +15,7 @@ else
 fi
 
 # See Color formatting section below for details on what colors can be used here.
-TMUX_POWERLINE_DEFAULT_BACKGROUND_COLOR=${TMUX_POWERLINE_DEFAULT_BACKGROUND_COLOR:-'236'}
+TMUX_POWERLINE_DEFAULT_BACKGROUND_COLOR=${TMUX_POWERLINE_DEFAULT_BACKGROUND_COLOR:-'#262637'}
 TMUX_POWERLINE_DEFAULT_FOREGROUND_COLOR=${TMUX_POWERLINE_DEFAULT_FOREGROUND_COLOR:-'15'}
 # shellcheck disable=SC2034
 TMUX_POWERLINE_SEG_AIR_COLOR=$(air_color)
@@ -32,7 +32,7 @@ if [ -z "$TMUX_POWERLINE_WINDOW_STATUS_CURRENT" ]; then
 		"#[$(format regular)]"
 		""
 		"#[$(format inverse)]"
-		"  #W "
+    "  #W:#I  "
 		"#[$(format regular)]"
 		""
 	)
@@ -103,10 +103,12 @@ if [ -z "$TMUX_POWERLINE_LEFT_STATUS_SEGMENTS" ]; then
 	TMUX_POWERLINE_LEFT_STATUS_SEGMENTS=(
 		"left 0 6 default_separator no_sep_bg_color no_sep_fg_color both_disable separator_disable"
 		"tmux_session_info 6 0 "
+    "pwd 5 0 "
 		#"gcalcli 11 0 "
-		"mailcount 13 0 "
-		"tmux_mem_cpu_load 11 0 "
-		"macos_notification_count 10 0 "
+		"ifstat 3 0 "
+		#"macos_notification_count 3 0 "
+		"mailcount_apple_mail 2 0 "
+		#"tmux_mem_cpu_load 3 0 "
 		#"mode_indicator 9 0"
 		#"ifstat 15 5"
 		#"ifstat_sys 15 5"
@@ -128,20 +130,21 @@ if [ -z "$TMUX_POWERLINE_RIGHT_STATUS_SEGMENTS" ]; then
 		#"pwd 0 15"
 		#"macos_notification_count 29 255"
 		#"cpu 240 136"
-		"battery 15 5"
-		"uptime 11 0 "
-    "date_day 10 0 "
-		"date 10 0 default_separator no_sep_bg_color no_sep_fg_color left_disable separator_disable"
-		#"tmux_mem_cpu_load 234 136"
-		"time 10 0 default_separator no_sep_bg_color no_sep_fg_color both_disable separator_disable"
+		"tmux_mem_cpu_load 15 0"
+		"ifstat 2 0 "
+		"uptime 3 0 "
+    #"date_day 10 0 "
+		#"date 10 0 default_separator no_sep_bg_color no_sep_fg_color left_disable separator_disable"
+		"disk_usage 5 0 "
+		#"time 10 0 default_separator no_sep_bg_color no_sep_fg_color both_disable separator_disable"
 		#"air ${TMUX_POWERLINE_SEG_AIR_COLOR} 255"
-		#"weather 37 255"
+		"weather 6 0 "
 		#"rainbarf 0 ${TMUX_POWERLINE_DEFAULT_FOREGROUND_COLOR}"
 		#"xkb_layout 125 117"
 		#"date_day 235 136"
 		#"date 235 136 ${TMUX_POWERLINE_SEPARATOR_LEFT_THIN}"
 		#"time 235 136 ${TMUX_POWERLINE_SEPARATOR_LEFT_THIN}"
 		#"utc_time 235 136 ${TMUX_POWERLINE_SEPARATOR_LEFT_THIN}"
-		"right 0 10 default_separator no_sep_bg_color no_sep_fg_color both_disable separator_disable"
+		"right 0 6 default_separator no_sep_bg_color no_sep_fg_color both_disable separator_disable"
 	)
 fi
