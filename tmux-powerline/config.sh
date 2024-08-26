@@ -345,7 +345,7 @@ export TMUX_POWERLINE_SEG_VCS_BRANCH_SVN_SYMBOL_COLOUR="220"
 # vcs_rootpath.sh {
 # Display mode for vcs_rootpath.
 # Example: (name: folder name only; path: full path, w/o expansion; user_path: full path, w/ tilde expansion)
-# export TMUX_POWERLINE_SEG_VCS_ROOTPATH_MODE="name"
+export TMUX_POWERLINE_SEG_VCS_ROOTPATH_MODE="user_path"
 # }
 
 # vcs_staged.sh {
@@ -382,7 +382,7 @@ export TMUX_POWERLINE_SEG_VCS_BRANCH_SVN_SYMBOL_COLOUR="220"
 # The data provider to use. Currently only "yahoo" is supported.
 export TMUX_POWERLINE_SEG_WEATHER_DATA_PROVIDER="yrno"
 # What unit to use. Can be any of {c,f,k}.
-export TMUX_POWERLINE_SEG_WEATHER_UNIT="c"
+export TMUX_POWERLINE_SEG_WEATHER_UNIT="f"
 # How often to update the weather in seconds.
 export TMUX_POWERLINE_SEG_WEATHER_UPDATE_PERIOD="600"
 # Name of GNU grep binary if in PATH, or path to it.
@@ -391,8 +391,8 @@ export TMUX_POWERLINE_SEG_WEATHER_GREP="grep"
 export TMUX_POWERLINE_SEG_WEATHER_JSON="jq"
 # Your location
 # Latitude and Longtitude for use with yr.no
-TMUX_POWERLINE_SEG_WEATHER_LAT=""
-TMUX_POWERLINE_SEG_WEATHER_LON=""
+TMUX_POWERLINE_SEG_WEATHER_LAT="35.376460"
+TMUX_POWERLINE_SEG_WEATHER_LON="-83.183660"
 # }
 
 # xkb_layout.sh {
