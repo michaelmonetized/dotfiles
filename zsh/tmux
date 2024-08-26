@@ -11,6 +11,7 @@ set -g escape-time 0             # zero-out escape time delay
 set -g history-limit 1000000     # increase history size (from 2,000)
 set -g renumber-windows on       # renumber all windows when any window is closed
 set -g pane-border-status top
+set-option -g status-position top
 
 bind -n C-h select-pane -L
 bind -n C-j select-pane -D
