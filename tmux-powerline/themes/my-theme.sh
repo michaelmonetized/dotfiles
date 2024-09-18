@@ -15,7 +15,7 @@ else
 fi
 
 # See Color formatting section below for details on what colors can be used here.
-TMUX_POWERLINE_DEFAULT_BACKGROUND_COLOR=${TMUX_POWERLINE_DEFAULT_BACKGROUND_COLOR:-'0'}
+TMUX_POWERLINE_DEFAULT_BACKGROUND_COLOR=${TMUX_POWERLINE_DEFAULT_BACKGROUND_COLOR:-'255'}
 TMUX_POWERLINE_DEFAULT_FOREGROUND_COLOR=${TMUX_POWERLINE_DEFAULT_FOREGROUND_COLOR:-'15'}
 # shellcheck disable=SC2034
 TMUX_POWERLINE_SEG_AIR_COLOR=$(air_color)
@@ -32,7 +32,7 @@ if [ -z "$TMUX_POWERLINE_WINDOW_STATUS_CURRENT" ]; then
 		"#[$(format regular)]"
 		""
 		"#[$(format inverse)]"
-    "  #W:#I  "
+		"  #W:#I  "
 		"#[$(format regular)]"
 		""
 	)
@@ -103,7 +103,7 @@ if [ -z "$TMUX_POWERLINE_LEFT_STATUS_SEGMENTS" ]; then
 	TMUX_POWERLINE_LEFT_STATUS_SEGMENTS=(
 		"left 0 6 default_separator no_sep_bg_color no_sep_fg_color both_disable separator_disable"
 		"tmux_session_info 6 0 "
-    "pwd 5 0 "
+		"pwd 5 0 "
 		#"gcalcli 11 0 "
 		"ifstat 3 0 "
 		#"macos_notification_count 3 0 "
@@ -133,7 +133,7 @@ if [ -z "$TMUX_POWERLINE_RIGHT_STATUS_SEGMENTS" ]; then
 		"tmux_mem_cpu_load 15 0"
 		"ifstat 2 0 "
 		"uptime 3 0 "
-    #"date_day 10 0 "
+		#"date_day 10 0 "
 		#"date 10 0 default_separator no_sep_bg_color no_sep_fg_color left_disable separator_disable"
 		"disk_usage 5 0 "
 		#"time 10 0 default_separator no_sep_bg_color no_sep_fg_color both_disable separator_disable"
