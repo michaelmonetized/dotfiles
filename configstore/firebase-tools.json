@@ -7,7 +7,7 @@
 		"node8DeploysDisabledAfter": 1613390400000,
 		"node8RuntimeDisabledAfter": 1615809600000,
 		"node8WarnAfter": 1600128000000,
-		"fetched": 1714271492030
+		"fetched": 1725502396247
 	},
 	"usage": true,
 	"analytics-uuid": "67a9d702-910f-4dc4-ba9e-f585b1927a3e",
@@ -34,5 +34,6 @@
 	},
 	"activeProjects": {
 		"/Users/michael/Documents/Projects/apps/next/my.hustlelaunch.com": "my-hustle-launch"
-	}
+	},
+	"lastError": 1725502396385
 }

@@ -6,14 +6,15 @@ GREEN_FG=0xFF23473e #23473eFF
 for d in ~/Projects/*; do
   if [ -d "$d" ]; then
     PNAME=$(basename $d)
-    PCLICK="/usr/local/bin/code $d; sketchybar --set projects popup.drawing=toggle"
+    SAFENAME=$(echo $PNAME | sed 's/[^a-zA-Z0-9-_]/-/g')
+    PCLICK="~/.local/bin/neovim-ide \"$d\" \"$SAFENAME\"; sketchybar --set projects popup.drawing=toggle"
 
     if [ ! -f "$d/README.md" ]; then
       PCLICK="open -a Finder $d; sketchybar --set projects popup.drawing=toggle"
     fi
 
     if [ -f "$d/wp-config.php" ]; then
-      PCLICK="/usr/local/bin/code $d; sketchybar --set projects popup.drawing=toggle"
+      PCLICK="~/.local/bin/neovim-ide \"$d\" \"$SAFENAME\"; sketchybar --set projects popup.drawing=toggle"
     fi
 
     PICON=""

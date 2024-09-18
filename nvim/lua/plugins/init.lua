@@ -1,5 +1,16 @@
 return {
   {
+    "MeanderingProgrammer/markdown.nvim",
+    lazy = false,
+    main = "render-markdown",
+    opts = {},
+    name = "render-markdown",
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      "nvim-tree/nvim-web-devicons",
+    },
+  },
+  {
     "supermaven-inc/supermaven-nvim",
     lazy = false,
   },
@@ -64,6 +75,7 @@ return {
       vim.cmd "let g:minimap_auto_start_win_enter = 1"
     end,
   },
+  { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
 }
 
 -- updated notify config

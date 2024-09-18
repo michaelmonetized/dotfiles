@@ -29,57 +29,64 @@ require("lazy").setup({
 }, lazy_config)
 
 -- Optional, you don't have to run setup.
-require("transparent").setup {
-  -- table: default groups
-  groups = {
-    "Normal",
-    "NormalNC",
-    "NvimTreeNormal",
-    "Comment",
-    "Constant",
-    "Special",
-    "Identifier",
-    "Statement",
-    "PreProc",
-    "Type",
-    "Underlined",
-    "Todo",
-    "String",
-    "Function",
-    "Conditional",
-    "Repeat",
-    "Operator",
-    "Structure",
-    "LineNr",
-    "NonText",
-    "SignColumn",
-    "CursorLine",
-    "CursorLineNr",
-    "StatusLine",
-    "StatusLineNC",
-    "EndOfBuffer",
-  },
-  -- table: additional groups that should be cleared
-  extra_groups = {},
-  -- table: groups you don't want to clear
-  exclude_groups = {},
-  -- function: code to be executed after highlight groups are cleared
-  -- Also the user event "TransparentClear" will be triggered
-  on_clear = function() end,
-}
+-- require("transparent").setup {
+--   -- table: default groups
+--   groups = {
+--     "Normal",
+--     "NormalNC",
+--     "NvimTreeNormal",
+--     "Comment",
+--     "Constant",
+--     "Special",
+--     "Identifier",
+--     "Statement",
+--     "PreProc",
+--     "Type",
+--     "Underlined",
+--     "Todo",
+--     "String",
+--     "Function",
+--     "Conditional",
+--     "Repeat",
+--     "Operator",
+--     "Structure",
+--     "LineNr",
+--     "NonText",
+--     "SignColumn",
+--     "CursorLine",
+--     "CursorLineNr",
+--     "StatusLine",
+--     "StatusLineNC",
+--     "EndOfBuffer",
+--   },
+--   -- table: additional groups that should be cleared
+--   extra_groups = {},
+--   -- table: groups you don't want to clear
+--   exclude_groups = {},
+--   -- function: code to be executed after highlight groups are cleared
+--   -- Also the user event "TransparentClear" will be triggered
+--   on_clear = function() end,
+-- }
 
 -- load theme
 dofile(vim.g.base46_cache .. "defaults")
 dofile(vim.g.base46_cache .. "statusline")
 
 require "nvchad.autocmds"
+require "configs.catppuccin"
+-- require "configs.conform"
 require "configs.gitsigns"
+require "configs.lazy"
+-- require "configs.lspconfig"
 require "configs.neogit"
 require "configs.noice"
+require "configs.notify"
 require "configs.nvimtree"
 require "configs.supermaven"
-require "configs.notify"
 
 vim.schedule(function()
   require "mappings"
 end)
+
+vim.o.termguicolors = true
+vim.cmd "colorscheme catppuccin-latte"
