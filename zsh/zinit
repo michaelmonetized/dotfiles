@@ -27,3 +27,7 @@ zinit snippet OMZP::command-not-found
 autoload -Uz compinit && compinit
 
 zinit cdreplay -q
+
+# Atuin History
+zinit load atuinsh/atuin
+

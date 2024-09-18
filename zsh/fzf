@@ -8,7 +8,7 @@ array_join() {
 
 # --- setup fzf theme ---
 fg="#ffbdd5"
-bg="#142128"
+bg="#11111b"
 bg_highlight="#7d7763"
 purple="#ed79a3"
 blue="#46baed"

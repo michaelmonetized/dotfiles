@@ -3,6 +3,8 @@
 #	 vi: foldmarker={,} foldmethod=marker foldlevel=0 tabstop=4 filetype=sh
 # }
 
+source "${XDG_CONFIG_HOME:-$HOME/.config}/.env"
+
 # General {
 # Show which segment fails and its exit code.
 export TMUX_POWERLINE_DEBUG_MODE_ENABLED="false"
@@ -164,7 +166,7 @@ export TMUX_POWERLINE_SEG_MAILCOUNT_GMAIL_USERNAME="michaelmonetized"
 # Account name : <username-below>@<server-below>
 # Password : Your password ( Once again, try to use 2 step-verification and application-specific password)
 # See http://support.google.com/accounts/bin/answer.py?hl=en&answer=185833 for more info.
-export TMUX_POWERLINE_SEG_MAILCOUNT_GMAIL_PASSWORD="bivq escx sfre kzlg"
+export TMUX_POWERLINE_SEG_MAILCOUNT_GMAIL_PASSWORD="$TMUX_POWERLINE_SEG_MAILCOUNT_GMAIL_PASSWORD"
 # Domain name that will complete your email. For normal GMail users it probably is "gmail.com but can be "foo.tld" for Google Apps users.
 export TMUX_POWERLINE_SEG_MAILCOUNT_GMAIL_SERVER="gmail.com"
 # How often in minutes to check for new mails.
