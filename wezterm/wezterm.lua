@@ -20,8 +20,8 @@ config.font_size = 18
 config.enable_tab_bar = false
 
 config.window_decorations = "RESIZE"
-config.window_background_opacity = 0.6
-config.macos_window_background_blur = 80
+config.window_background_opacity = 1
+config.macos_window_background_blur = 0
 config.default_prog = { "/bin/zsh", "-l", "-c", "~/.config/tmux-start.sh; exec zsh" }
 
 config.color_scheme = "Catppuccin Latte"
