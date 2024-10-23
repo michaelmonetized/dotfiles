@@ -1,11 +1,14 @@
 yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
 sudo yabai --load-sa
 
-yabai -m config window_opacity off
-yabai -m config window_opacity_duration 0.1
-yabai -m config active_window_opacity 1
-yabai -m config normal_window_opacity 1
-yabai -m config window_animation_duration 0.1
+yabai -m config window_opacity on
+yabai -m config window_opacity_duration 0.3
+yabai -m config active_window_opacity .9
+yabai -m config normal_window_opacity .8
+yabai -m config window_background_blur on
+yabai -m config active_window_background_blur_radius 80
+yabai -m config window_animation_duration 0.3
 yabai -m config window_animation_easing ease_out_quint
+yabai -m config window_border_blur on
 
 echo "yabai configured"

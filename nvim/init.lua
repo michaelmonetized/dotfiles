@@ -43,11 +43,11 @@ require "configs.noice"
 require "configs.notify"
 require "configs.nvimtree"
 require "configs.supermaven"
-require "configs.transparent"
+-- require "configs.transparent"
 
 vim.schedule(function()
   require "mappings"
 end)
 
 vim.o.termguicolors = true
-vim.cmd "colorscheme catppuccin-latte"
+-- vim.cmd "colorscheme catppuccin-latte"

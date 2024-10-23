@@ -44,10 +44,10 @@ return {
       require "configs.lspconfig"
     end,
   },
-  {
-    "xiyaowong/transparent.nvim",
-    lazy = false,
-  },
+  -- {
+  --   "xiyaowong/transparent.nvim",
+  --   lazy = false,
+  -- },
   {
     "christoomey/vim-tmux-navigator",
     lazy = false,
