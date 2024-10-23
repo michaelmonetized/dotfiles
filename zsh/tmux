@@ -52,7 +52,7 @@ set -g @plugin 'thewtex/tmux-mem-cpu-load'
 set -g @resurrect-capture-pane-contents 'on'
 set -g @continuum-restore 'off'
 
-set -g status-style 'fg=color0,bg=color255'
+set -g status-style 'fg=color0,bg=color250'
 
 set -g @sessionx-custom-paths "$HOME/Projects,$HOME/Library/Mobile Documents/com~apple~CloudDocs/Projects"
 set -g @sessionx-custom-paths-subdirectories 'false'

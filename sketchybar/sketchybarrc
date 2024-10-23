@@ -238,7 +238,7 @@ projects=(
       click_script="sketchybar --set \$NAME popup.drawing=toggle"
       popup.background.color=$GREEN_BG
       popup.height=26
-      script="$PLUGIN_DIR/list_projects.sh"
+      script="$PLUGIN_DIR/new_list_projects.sh"
 )
 
 projects_before=(

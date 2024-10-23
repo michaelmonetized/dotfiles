@@ -73,9 +73,19 @@ return {
     config = function()
       vim.cmd "let g:minimap_auto_start = 1"
       vim.cmd "let g:minimap_auto_start_win_enter = 1"
+      vim.cmd "let g:minimap_highlight_range = 0"
+      vim.cmd "let g:minimap_highlight_search = 1"
+      vim.cmd "let g:minimap_git_colors = 1"
+      vim.cmd "let g:minimap_left = 0"
+
+      vim.cmd "hi minimapRange guibg=#dce0e8 guifg=#5c5f77"
+      vim.cmd "g:minimap_range_color = 'minimapRange'"
+
+      vim.cmd "hi.minimap_cursor_color guibg=#e6e9ef guifg=#209fb5"
+      vim.cmd "g:minimap_cursor_color = 'minimap_cursor_color'"
     end,
   },
-  { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
+  { "catppuccin/nvim", name = "catppuccin", priority = 1000, lazy = false },
 }
 
 -- updated notify config

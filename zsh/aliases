@@ -1,6 +1,7 @@
-alias nano='micro'
+alias nano='nvim'
+alias micro='nvim'
 alias ls='eza --color=always --long --git --icons=always --no-filesize --no-time --no-permissions --no-user'
 alias lt='eza --tree --git-ignore --color=always --icons=always --no-filesize --no-time --no-permissions --no-user'
 alias la='eza --color=always --long --git --icons=always --no-filesize --no-time --no-permissions --no-user --all'
-
+alias lg='lazygit'
 alias c='clear'
