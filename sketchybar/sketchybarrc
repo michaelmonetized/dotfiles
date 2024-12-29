@@ -7,7 +7,7 @@ PLUGIN_DIR="$CONFIG_DIR/plugins"
 FONT_FACE="NotoMono Nerd Font Mono:Regular"
 
 # Dictionary of colors
-BG=0xBB142128         #142128BB
+BG=0xBB1E1E2E         #142128BB
 LABEL=0xFF79d0ed      #79d0edFF
 ICON=0xFFFFbdd5       #FFbdd5FF
 TRANS=0x00000000      #00000000
@@ -16,7 +16,7 @@ BLACK=0xFF000000      #000000FF
 DARK_MAGENTA=0xb35b7b #b35b7bFF
 YELLOW_BG=0xFFffe894  #ffe894FF
 MAG_FG=0xFFb35b7b     #b35b7bFF
-DARK_BG=0xff1c2a36    #1c2a36ff
+DARK_BG=0xff181825    #1c2a36ff
 
 ##### Bar Appearance #####
 # Configuring the general appearance of the bar.
@@ -25,7 +25,7 @@ DARK_BG=0xff1c2a36    #1c2a36ff
 # If you are looking for other colors, see the color picker:
 # https://felixkratz.github.io/SketchyBar/config/tricks#color-picker
 
-sketchybar --bar position=top height=64 blur_radius=13 color=0x59FFFFFF sticky=on
+sketchybar --bar position=top height=64 blur_radius=13 color=0xdd1e1e2e sticky=on
 
 ##### Changing Defaults #####
 # We now change some default values, which are applied to all further items.
