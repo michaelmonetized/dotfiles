@@ -4,9 +4,9 @@ Official dotfiles for MichaelMonetized
 
 ## TODO
 
-[] darkmode fzf
-[] darkmode taskwarrior
-[] move skhdrc here and link to ~
+[x] darkmode fzf
+[x] darkmode taskwarrior
+[x] move skhdrc here and link to ~
 
 ## What is it?
 

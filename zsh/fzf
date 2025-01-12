@@ -7,12 +7,12 @@ array_join() {
 }
 
 # --- setup fzf theme ---
-fg="#4c4f69"
-bg="#eff1f5"
-bg_highlight="#9ca0b0"
-purple="#7287fd"
-blue="#1e66f5"
-cyan="#04a5e5"
+fg="#cdd6f4"
+bg="#1e1e2e"
+bg_highlight="#585b70"
+purple="#b4befe"
+blue="#74c7ec"
+cyan="#94e2d5"
 
 export FZF_DEFAULT_OPTS="--ansi --preview-window='right:50%' --color=fg:${fg},bg:${bg},hl:${purple},fg+:${fg},bg+:${bg_highlight},hl+:${purple},info:${blue},prompt:${cyan},pointer:${cyan},marker:${cyan},spinner:${cyan},header:${cyan}"
 
