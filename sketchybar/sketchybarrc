@@ -25,7 +25,7 @@ DARK_BG=0xff181825    #1c2a36ff
 # If you are looking for other colors, see the color picker:
 # https://felixkratz.github.io/SketchyBar/config/tricks#color-picker
 
-sketchybar --bar position=top height=64 blur_radius=13 color=0xFF000000 sticky=on
+sketchybar --bar position=top height=64 blur_radius=13 color=0x00000000 sticky=on
 
 ##### Changing Defaults #####
 # We now change some default values, which are applied to all further items.
