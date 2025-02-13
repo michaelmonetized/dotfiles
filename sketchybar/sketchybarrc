@@ -151,29 +151,35 @@ sketchybar --add item space_before left \
       background.color=$TRANS \
       label.drawing=off
 
-sketchybar --add event aerospace_workspace_change
-SPACE_ICONS=("" "󰨞" "󰀹" "" "" "" "󰚅" "" "󰲪" "󰲬" "󰲮" "󰲰")
- WORKSPACES=("W" "C" "A" "M" "D" "E" "O" "T" "6" "7" "8" "9")
-for i in "${!SPACE_ICONS[@]}"; do
-      sid="${WORKSPACES[$i]}"
-      workspace=(
-            workspace="$sid"
-            icon="${SPACE_ICONS[i]}"
-            padding_left=0
-            padding_right=0
-            icon.padding_left=14
-            icon.padding_right=14
-            icon.color=$WHITE
-            background.color=$ICON
-            background.height=36
-            label.drawing=off
-            script="$PLUGIN_DIR/workspace.sh $sid"
-            click_script="aerospace workspace $sid"
-      )
-      sketchybar --add workspace workspace."$sid" left \
-            --subscribe workspace."$sid" aerospace_workspace_change \
-            --set workspace."$sid" "${workspace[@]}"
+SPACE_ICONS=("󰊠" "󰀹" "" "" "󰴓" "" "󰚅" "" "󰲪" "󰲬" "󰲮" "󰲰" "󰲨")
+for i in "${!SPACE_ICONS[@]}"
+do
+  sid="$(($i+1))"
+  space=(
+    space="$sid"
+    icon="${SPACE_ICONS[i]}"
+    padding_left=0
+    padding_right=0
+    icon.padding_left=14
+    icon.padding_right=14
+    icon.color=0xDDb35b7b
+    background.color=$ICON
+    background.height=36
+    label.drawing=off
+    script="$PLUGIN_DIR/space.sh $sid"
+    click_script="yabai -m space --focus $sid"
+  )
+  sketchybar --add space space."$sid" left \
+             --set space."$sid" "${space[@]}"
 done
+
+EMPTYSPACES=$(yabai -m query --spaces | jq -r '.[] | select(."last-window"==0) | .index')
+for i in $EMPTYSPACES; do
+  sketchybar --set space."$i" icon.color=0x44b35b7b
+done
+
+VISIBLESPACE=$(yabai -m query --spaces | jq -r '.[] | select(."is-visible"==true) | .index')
+sketchybar --set space."$VISIBLESPACE" icon.color=0xFF47242b
 
 sketchybar --add item space_after left \
       --set space_after icon="" \
