@@ -22,4 +22,34 @@ yabai -m config                               \
   window_animation_duration    0.3            \
   window_animation_easing      ease_out_quint
 
+# organie windows to the correct space, on window_created event query windows and move to correct space
+## ghostty, terminal, wezterm, alacritty : space 1
+## code, cursor, coda, xcode, github, nova : space 2
+## arc, chrome, safari, brave, firefox, edge, opera : space 3
+## messages, mail, outlook, spike, voice, discord, calendar, cron : space 4
+## pages, word, notes, notion, docs, designer, publisher, photo, figma : space 5
+## youtube, spotify, tv, teams, zoom, meet, facetime, skype : space 6
+## obs, streamlabs, twitch : space 7
+
+SPACES="\
+[\
+  [\"Ghostty\", \"Terminal\", \"Wezterm\", \"Alacritty\", \"Code\", \"Cursor\", \"Coda\", \"Xcode\", \"Github\", \"Nova\"],\
+  [\"Arc\", \"Google Chrome\", \"Safari\", \"Brave\", \"Firefox\", \"Microsoft Edge\", \"Opera\"],\
+  [\"Messages\", \"Mail\", \"Microsoft Outlook\", \"Spike\", \"Voice\", \"Discord\", \"Calendar\", \"Notion Calendar\"],\
+  [\"Pages\", \"Microsoft Word\", \"Notes\", \"Notion\", \"Docs\", \"Affinity Designer2\", \"Affinity Publisher 2\", \"Affinity Photo2\", \"Figma\", \"Canva\"],\
+  [\"Youtube\", \"Spotify\", \"Apple TV\", \"Microsoft Teams\", \"Zoom\", \"Google Meet\", \"Facetime\", \"Skype\"],\
+  [\"OBS\", \"Streamlabs\", \"Twitch Stream Manager\"]\
+]"
+
+space_list=$(echo "${SPACES}" | jq -r '.[]')
+
+wc_action(){
+  if [ $(yabai -m query --windows | jq -r '.[] | select(."app" == $1 and ."has-focus" == true)' | jq -r '.app') ]
+    yabai -m window --space $2
+    yabai -m space --focus $2
+  fi
+}
+
+yabai -m signal --add event=window_created --action="$wc_action 'Ghostty' '1'"
+
 echo "yabai configured"
