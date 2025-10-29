@@ -33,3 +33,8 @@
 2025/05/10 (13:18:35) | ERROR: Couldn't determine terminal size of "STDOUT_FILENO"!
 2025/05/10 (13:18:36) | ERROR: Couldn't determine terminal size of "STDOUT_FILENO"!
 2025/05/10 (13:18:37) | ERROR: Couldn't determine terminal size of "STDOUT_FILENO"!
+
+2025/06/25 (23:44:53) | ===> btop++ v.1.4.0
+2025/06/25 (23:44:53) | ERROR: Stall in Runner thread, restarting!
+2025/06/25 (23:45:11) | ERROR: Stall in Runner thread, restarting!
+2025/06/27 (11:01:29) | ERROR: Stall in Runner thread, restarting!
