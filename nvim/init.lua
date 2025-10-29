@@ -51,3 +51,4 @@ end)
 
 vim.o.termguicolors = true
 -- vim.cmd "colorscheme catppuccin-latte"
+require("nvibe").setup()
