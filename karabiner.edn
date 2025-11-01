@@ -15,9 +15,27 @@
              :v-mode {:key :v}    ; Number pad with + - BS ENTER as well
              :c-mode {:key :c}    ; Slashes and lines  ^ | \ _ @
              :x-mode {:key :x}    ; Some multi-character shortcuts like <= (not implemented)
+             :option-mode {:key :option}    ; Alt+key
              }
 
  :main [
+        {:des "skhd is not working"
+         :rules [:option-mode
+           [:##g :!control+1]
+           [:##s :!control+2]
+           [:##c :!control+3]
+           [:##m :!control+4]
+           [:##d :!control+5]
+           [:##e :!control+6]
+           [:##o :!control+7]
+           [:##t :!control+8]
+           [:##6 :!control+9]
+           [:##7 :!control+option+1]
+           [:##8 :!control+option+2]
+           [:##9 :!control+option+3]
+           [:##0 :!control+option+4]
+         ]
+        }
         {:des "f-mode for delimeters and ! ? $"
          :rules [:f-mode
                  ;; u i j k m comma -> !Sopen_bracket !Sclose_bracket !S9 !S0 open_bracket close_bracket
