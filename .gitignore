@@ -5,3 +5,5 @@
 /micro
 /thefuck
 .env
+.DS_Store
+
