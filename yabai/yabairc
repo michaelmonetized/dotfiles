@@ -1,14 +1,67 @@
 yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
 sudo yabai --load-sa
 
-yabai -m config window_opacity on
-yabai -m config window_opacity_duration 0.3
-yabai -m config active_window_opacity .9
-yabai -m config normal_window_opacity .8
-yabai -m config window_background_blur on
-yabai -m config active_window_background_blur_radius 80
-yabai -m config window_animation_duration 0.3
-yabai -m config window_animation_easing ease_out_quint
-yabai -m config window_border_blur on
+yabai -m config                               \
+  external_bar                 off:64:0       \
+  split_ratio                  0.50           \
+  split_type                   auto           \
+  auto_balance                 off            \
+  top_padding                  21             \
+  bottom_padding               75             \
+  left_padding                 21             \
+  right_padding                21             \
+  window_gap                   21             \
+  layout                       bsp            \
+  window_opacity               on             \
+  window_background_blur       on             \
+  window_border_blur           on             \
+  window_opacity_duration      0.1            \
+  active_window_opacity        0.94           \
+  normal_window_opacity        0.86           \
+  active_window_background_blur_radius 80     \
+  window_animation_duration    0.1            \
+  window_animation_easing      ease_out_quint \
+  mouse_follows_focus on             \
+  focus_follows_mouse autoraise      \
+  mouse_modifier               fn             \
+  mouse_action1                move           \
+  mouse_action2                resize         
+
+# organie windows to the correct space, on window_created event query windows and move to correct space
+## ghostty, terminal, wezterm, alacritty : space 1
+## code, cursor, coda, xcode, github, nova : space 2
+## arc, chrome, safari, brave, firefox, edge, opera : space 3
+## messages, mail, outlook, spike, voice, discord, calendar, cron : space 4
+## pages, word, notes, notion, docs, designer, publisher, photo, figma : space 5
+## youtube, spotify, tv, teams, zoom, meet, facetime, skype : space 6
+## obs, streamlabs, twitch : space 7
+
+SPACES="\
+[\
+  [\"Ghostty\", \"Terminal\", \"Wezterm\", \"Alacritty\", \"Code\", \"Cursor\", \"Coda\", \"Xcode\", \"Github\", \"Nova\"],\
+  [\"Arc\", \"Google Chrome\", \"Safari\", \"Brave\", \"Firefox\", \"Microsoft Edge\", \"Opera\"],\
+  [\"Messages\", \"Mail\", \"Microsoft Outlook\", \"Spike\", \"Voice\", \"Discord\", \"Calendar\", \"Notion Calendar\"],\
+  [\"Pages\", \"Microsoft Word\", \"Notes\", \"Notion\", \"Docs\", \"Affinity Designer2\", \"Affinity Publisher 2\", \"Affinity Photo2\", \"Figma\", \"Canva\"],\
+  [\"Youtube\", \"Spotify\", \"Apple TV\", \"Microsoft Teams\", \"Zoom\", \"Google Meet\", \"Facetime\", \"Skype\"],\
+  [\"OBS\", \"Streamlabs\", \"Twitch Stream Manager\"]\
+]"
+
+space_list=$(echo "${SPACES}" | jq -r '.[]')
+
+wc_action(){
+  if [ $(yabai -m query --windows | jq -r '.[] | select(."app" == $1 and ."has-focus" == true)' | jq -r '.app') ]
+    yabai -m window --space $2
+    yabai -m space --focus $2
+  fi
+}
+
+yabai -m signal --add event=window_created --action="$wc_action 'Ghostty' '1'"
+
+
+yabai --stop-service
+yabai --start-service
+skhd --stop-service
+skhd --start-service
 
 echo "yabai configured"
+

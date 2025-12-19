@@ -88,7 +88,7 @@ cmd-alt-h = [] # Disable "hide others"
 
 # You can uncomment this line to open up terminal with alt + enter shortcut
 # See: https://nikitabobko.github.io/AeroSpace/commands#exec-and-forget
-alt-enter = 'exec-and-forget open -n /Applications/WezTerm.app'
+alt-enter = 'exec-and-forget open -n /Applications/Ghostty.app/'
 alt-leftSquareBracket = 'exec-and-forget open -n "/Applications/Visual Studio Code.app"'
 alt-2 = 'exec-and-forget open -n "/Applications/Spike.app"'
 alt-n = 'exec-and-forget open -n "/Applications/Notion.app"'
@@ -215,6 +215,10 @@ if.app-id = 'com.microsoft.VSCode'
 run = "move-node-to-workspace C"
 
 [[on-window-detected]]
+if.app-id = 'com.todesktop.230313mzl4w4u92'
+run = "move-node-to-workspace C"
+
+[[on-window-detected]]
 if.app-id = 'com.seriflabs.affinitydesigner'
 run = "move-node-to-workspace D"
 
@@ -276,6 +280,10 @@ run = "move-node-to-workspace M"
 
 [[on-window-detected]]
 if.app-id = 'com.github.wez.wezterm'
+run = "move-node-to-workspace W"
+
+[[on-window-detected]]
+if.app-id = 'com.mitchellh.ghostty'
 run = "move-node-to-workspace W"
 
 [[on-window-detected]]
