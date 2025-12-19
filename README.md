@@ -1,6 +1,12 @@
 # dotfiles
 
-Official dotfile for MichaelMonetized
+Official dotfiles for MichaelMonetized
+
+## TODO
+
+[x] darkmode fzf
+[x] darkmode taskwarrior
+[x] move skhdrc here and link to ~
 
 ## What is it?
 

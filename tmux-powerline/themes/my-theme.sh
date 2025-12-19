@@ -15,8 +15,8 @@ else
 fi
 
 # See Color formatting section below for details on what colors can be used here.
-TMUX_POWERLINE_DEFAULT_BACKGROUND_COLOR=${TMUX_POWERLINE_DEFAULT_BACKGROUND_COLOR:-'255'}
-TMUX_POWERLINE_DEFAULT_FOREGROUND_COLOR=${TMUX_POWERLINE_DEFAULT_FOREGROUND_COLOR:-'15'}
+TMUX_POWERLINE_DEFAULT_BACKGROUND_COLOR=${TMUX_POWERLINE_DEFAULT_BACKGROUND_COLOR:-'terminal'}
+TMUX_POWERLINE_DEFAULT_FOREGROUND_COLOR=${TMUX_POWERLINE_DEFAULT_FOREGROUND_COLOR:-'0'}
 # shellcheck disable=SC2034
 TMUX_POWERLINE_SEG_AIR_COLOR=$(air_color)
 
@@ -102,21 +102,21 @@ fi
 if [ -z "$TMUX_POWERLINE_LEFT_STATUS_SEGMENTS" ]; then
 	TMUX_POWERLINE_LEFT_STATUS_SEGMENTS=(
 		"left 0 6 default_separator no_sep_bg_color no_sep_fg_color both_disable separator_disable"
-		"tmux_session_info 6 255 "
-		"pwd 5 255 "
+		"tmux_session_info 6 0 "
+		"pwd 5 0 "
 		#"gcalcli 11 0 "
-		"ifstat 3 255 "
+		"ifstat 3 0 "
 		#"macos_notification_count 3 0 "
-		"mailcount_apple_mail 2 255 "
+		"mailcount_apple_mail 2 0 "
 		#"tmux_mem_cpu_load 3 0 "
 		#"mode_indicator 9 0"
 		#"ifstat 15 5"
 		#"ifstat_sys 15 5"
-		#"lan_ip 24 255 ${TMUX_POWERLINE_SEPARATOR_RIGHT_THIN}"
-		#"vpn 24 255 ${TMUX_POWERLINE_SEPARATOR_RIGHT_THIN}"
-		#"wan_ip 24 255"
-		#"vcs_compare 60 255"
-		#"vcs_staged 64 255"
+		#"lan_ip 24 0 ${TMUX_POWERLINE_SEPARATOR_RIGHT_THIN}"
+		#"vpn 24 0 ${TMUX_POWERLINE_SEPARATOR_RIGHT_THIN}"
+		#"wan_ip 24 0"
+		#"vcs_compare 60 0"
+		#"vcs_staged 64 0"
 		#"vcs_modified 15 5 default_separator no_sep_bg_color no_sep_fg_color right_disable separator_disable"
 		#"vcs_branch 15 5"
 		#"vcs_others 15 5"
@@ -128,23 +128,23 @@ if [ -z "$TMUX_POWERLINE_RIGHT_STATUS_SEGMENTS" ]; then
 	TMUX_POWERLINE_RIGHT_STATUS_SEGMENTS=(
 		#"earthquake 3 0"
 		#"pwd 0 15"
-		#"macos_notification_count 29 255"
+		#"macos_notification_count 29 0"
 		#"cpu 240 136"
-		"tmux_mem_cpu_load 15 255"
+		"tmux_mem_cpu_load 15 0"
 		#"ifstat 2 0  15 2"
-		"uptime 3 255  15 3"
+		"uptime 3 0  15 3"
 		#"date_day 10 0 "
 		#"date 10 0 default_separator no_sep_bg_color no_sep_fg_color left_disable separator_disable"
-		"disk_usage 5 255  3 5"
+		"disk_usage 5 0  3 5"
 		#"time 10 0 default_separator no_sep_bg_color no_sep_fg_color both_disable separator_disable"
-		#"air ${TMUX_POWERLINE_SEG_AIR_COLOR} 255"
-		"weather 6 255  5 6"
+		#"air ${TMUX_POWERLINE_SEG_AIR_COLOR} 0"
+		"weather 6 0  5 6"
 		#"rainbarf 0 ${TMUX_POWERLINE_DEFAULT_FOREGROUND_COLOR}"
 		#"xkb_layout 125 117"
 		#"date_day 235 136"
 		#"date 235 136 ${TMUX_POWERLINE_SEPARATOR_LEFT_THIN}"
 		#"time 235 136 ${TMUX_POWERLINE_SEPARATOR_LEFT_THIN}"
 		#"utc_time 235 136 ${TMUX_POWERLINE_SEPARATOR_LEFT_THIN}"
-		"right 6 255 default_separator no_sep_bg_color no_sep_fg_color both_disable separator_disable"
+		"right 6 0 default_separator no_sep_bg_color no_sep_fg_color both_disable separator_disable"
 	)
 fi
