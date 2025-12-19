@@ -17,7 +17,7 @@ yabai -m config                               \
   window_border_blur           on             \
   window_opacity_duration      0.1            \
   active_window_opacity        0.94           \
-  normal_window_opacity        0.84           \
+  normal_window_opacity        0.86           \
   active_window_background_blur_radius 80     \
   window_animation_duration    0.1            \
   window_animation_easing      ease_out_quint \
@@ -56,5 +56,12 @@ wc_action(){
 }
 
 yabai -m signal --add event=window_created --action="$wc_action 'Ghostty' '1'"
-yabai -m signal --add event=space_changed action="nohup open -g raycast://extensions/krzysztoff1/yabai/screens-menu-bar?launchType=background > /dev/null 2>&1 &"
+
+
+yabai --stop-service
+yabai --start-service
+skhd --stop-service
+skhd --start-service
+
 echo "yabai configured"
+

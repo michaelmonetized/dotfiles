@@ -1,7 +1,7 @@
 #!/bin/bash
 
-sudo yabai --load-sa
-yabai --restart-service
+yabai --stop-service
+yabai --start-service
 
 exit $?
 
