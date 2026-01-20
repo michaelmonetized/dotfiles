@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "authToken": "IxF6su0oYuwoJWzGowGAYvj8M1xe8YTITTCxHGCIEcnp55yLuqFAMOD8eVXh",
   "gtiConfigs": [
     {
@@ -10,5 +11,7 @@
       "value": "true"
     }
   ],
+=======
+>>>>>>> 71f26ae (trying to learn graphite)
   "updateAutomatically": true
 }
