@@ -5,3 +5,4 @@ alias lt='eza --tree --git-ignore --color=always --icons=always --no-filesize --
 alias la='eza --color=always --long --git --icons=always --no-filesize --no-time --no-permissions --no-user --all'
 alias lg='lazygit'
 alias c='clear'
+alias cld="claude --dangerously-skip-permissions"
