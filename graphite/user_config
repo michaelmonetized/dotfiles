@@ -1,0 +1,14 @@
+{
+  "authToken": "IxF6su0oYuwoJWzGowGAYvj8M1xe8YTITTCxHGCIEcnp55yLuqFAMOD8eVXh",
+  "gtiConfigs": [
+    {
+      "key": "gti.install-uuid",
+      "value": "9382d0bb-f63d-4882-9fed-89ab02ae2ca1"
+    },
+    {
+      "key": "gti.is-onboarded",
+      "value": "true"
+    }
+  ],
+  "updateAutomatically": true
+}
