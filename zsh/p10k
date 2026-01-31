@@ -68,6 +68,7 @@
     # laravel_version       # laravel php framework version (https://laravel.com/)
     # java_version          # java version (https://www.java.com/)
     package               # name@version from package.json (https://docs.npmjs.com/files/package.json)
+    git_repo_status         # custom: shows NOT A REPO or NO REMOTE warnings
     vcs                     # git status
     # rbenv                   # ruby version from rbenv (https://github.com/rbenv/rbenv)
     # rvm                     # ruby version from rvm (https://rvm.io)
@@ -1780,39 +1781,27 @@ typeset -g POWERLEVEL9K_PACKAGE_CONTENT_EXPANSION='${P9K_PACKAGE_NAME//\%/%%} v$
   # Custom prefix.
   # typeset -g POWERLEVEL9K_TIME_PREFIX='at '
 
-  # Example of a user-defined prompt segment. Function prompt_example will be called on every
-  # prompt if `example` prompt segment is added to POWERLEVEL9K_LEFT_PROMPT_ELEMENTS or
-  # POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS. It displays an icon and yellow text on red background
-  # greeting the user.
-  #
-  # Type `p10k help segment` for documentation and a more sophisticated example.
-  function prompt_example() {
-    p10k segment -b 1 -f 3 -i '⭐' -t 'hello, %n'
+  # Custom git repo status segment
+  # Shows "NOT A REPO" (orange) or "NO REMOTE" (red) when applicable
+  # Only displays when there's an issue; hidden when everything is normal
+  function prompt_git_repo_status() {
+    # Check if we're in a git repo
+    if ! git rev-parse --is-inside-work-tree &>/dev/null 2>&1; then
+      # Orange background (208), white foreground - NOT A REPO
+      p10k segment -b 208 -f 15 -i '󰊢' -t 'NOT A REPO'
+    elif ! git remote get-url origin &>/dev/null 2>&1; then
+      # Red background (1), white foreground - NO REMOTE
+      p10k segment -b 1 -f 15 -i '󰊢' -t 'NO REMOTE'
+    fi
+    # If repo exists and has remote, show nothing (let vcs handle it)
   }
 
-  # User-defined prompt segments may optionally provide an instant_prompt_* function. Its job
-  # is to generate the prompt segment for display in instant prompt. See
-  # https://github.com/romkatv/powerlevel10k#instant-prompt.
-  #
-  # Powerlevel10k will call instant_prompt_* at the same time as the regular prompt_* function
-  # and will record all `p10k segment` calls it makes. When displaying instant prompt, Powerlevel10k
-  # will replay these calls without actually calling instant_prompt_*. It is imperative that
-  # instant_prompt_* always makes the same `p10k segment` calls regardless of environment. If this
-  # rule is not observed, the content of instant prompt will be incorrect.
-  #
-  # Usually, you should either not define instant_prompt_* or simply call prompt_* from it. If
-  # instant_prompt_* is not defined for a segment, the segment won't be shown in instant prompt.
-  function instant_prompt_example() {
-    # Since prompt_example always makes the same `p10k segment` calls, we can call it from
-    # instant_prompt_example. This will give us the same `example` prompt segment in the instant
-    # and regular prompts.
-    prompt_example
+  function instant_prompt_git_repo_status() {
+    prompt_git_repo_status
   }
 
-  # User-defined prompt segments can be customized the same way as built-in segments.
-  typeset -g POWERLEVEL9K_EXAMPLE_FOREGROUND=3
-  typeset -g POWERLEVEL9K_EXAMPLE_BACKGROUND=1
-  # typeset -g POWERLEVEL9K_EXAMPLE_VISUAL_IDENTIFIER_EXPANSION='⭐'
+  # Styling for git_repo_status segment
+  typeset -g POWERLEVEL9K_GIT_REPO_STATUS_FOREGROUND=15
 
   # Transient prompt works similarly to the builtin transient_rprompt option. It trims down prompt
   # when accepting a command line. Supported values:

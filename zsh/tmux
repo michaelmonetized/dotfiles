@@ -33,6 +33,8 @@ bind & "kill-window"
 bind k "kill-server"
 
 bind-key -r i display-popup -T "Cheat Sheet" "/bin/zsh -c \"/Users/michael/.local/bin/chtsht\""
+bind-key g display-popup -E -w 80% -h 80% -T "Glyph Picker" "/Users/michael/.bun/bin/bun /Users/michael/bin/nfglyph || read"
+bind-key ^ display-popup -E -w 90% -h 90% -T "lazygit" "/opt/homebrew/bin/lazygit"
 
 # List of plugins
 set -g @plugin 'tmux-plugins/tpm'

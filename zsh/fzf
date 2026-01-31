@@ -92,3 +92,10 @@ _fzf_comprun() {
 }
 
 export BAT_THEME="Monokai Extended Light"
+
+# fzf-tab preview configuration (matches _fzf_comprun behavior)
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza --tree --color=always --all $realpath | head -200'
+zstyle ':fzf-tab:complete:(export|unset):*' fzf-preview 'eval echo \$$word'
+zstyle ':fzf-tab:complete:ssh:*' fzf-preview 'dig $word'
+zstyle ':fzf-tab:complete:(code|micro|nvim|vim|nano|bat|cat|open|cp|mv|rm):*' fzf-preview 'bat -n --color=always --line-range :500 $realpath 2>/dev/null || cat $realpath'
+zstyle ':fzf-tab:complete:*:*' fzf-preview '[ -d $realpath ] && eza --tree --color=always $realpath | head -200 || bat -n --color=always --line-range :500 $realpath 2>/dev/null'
