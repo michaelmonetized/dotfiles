@@ -16,4 +16,13 @@ alias nsh='open "https://sheets.new"'
 alias ndc='open "htts://docs.new"'
 alias nv='nvim "$@"'
 alias p='cld -p "$@"'
-alias mpr='gh pr merge'
+unalias cb 2>/dev/null
+cb() {
+  git remote show origin | awk '/HEAD branch/ {print $NF}'
+}
+unalias mpr 2>/dev/null
+mpr() {
+  gh pr merge -sd && \
+  git checkout "$(cb)" && \
+  git pull
+}
