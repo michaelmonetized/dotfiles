@@ -13,12 +13,18 @@ _alias_pick() {
     # Show all aliases
     selected=$(rg "^alias " ~/.config/zsh --no-filename -N | \
       sed 's/^alias //' | \
-      fzf --height=40% --reverse --border --prompt="All aliases: ")
+      sort | \
+      fzf --height=40% --reverse --border --ansi \
+          --color="fg:#cdd6f4,bg:#1e1e2e,hl:#f38ba8,fg+:#cdd6f4,bg+:#313244,hl+:#f38ba8,info:#cba6f7,prompt:#94e2d5,pointer:#f5e0dc,marker:#f5e0dc,spinner:#f5e0dc,header:#94e2d5" \
+          --prompt="All aliases: ")
   else
     # Show aliases starting with prefix
     selected=$(rg "^alias ${prefix}" ~/.config/zsh --no-filename -N | \
       sed 's/^alias //' | \
-      fzf --height=40% --reverse --border --prompt="${prefix}* aliases: ")
+      sort | \
+      fzf --height=40% --reverse --border --ansi \
+          --color="fg:#cdd6f4,bg:#1e1e2e,hl:#f38ba8,fg+:#cdd6f4,bg+:#313244,hl+:#f38ba8,info:#cba6f7,prompt:#94e2d5,pointer:#f5e0dc,marker:#f5e0dc,spinner:#f5e0dc,header:#94e2d5" \
+          --prompt="${prefix}* aliases: ")
   fi
   
   if [[ -n "$selected" ]]; then
