@@ -6,3 +6,23 @@ alias la='eza --color=always --long --git --icons=always --no-filesize --no-time
 alias lg='lazygit'
 alias c='clear'
 alias cld="claude --dangerously-skip-permissions"
+alias np="~/bin/newproject" #pops an fzf menu with options ( hustlestack,  swift,  cli,  hustlestack-web-native-monorepo)
+alias npr='~/bin/stack "$@"'
+alias ni='gh issue create "$@"'
+alias m='gt merge -q "$@"'
+alias no='openclaw tui'
+alias nob='openclaw browser "$@"'
+alias nsh='open "https://sheets.new"'
+alias ndc='open "htts://docs.new"'
+alias nv='nvim "$@"'
+alias p='cld -p "$@"'
+unalias cb 2>/dev/null
+cb() {
+  git remote show origin | awk '/HEAD branch/ {print $NF}'
+}
+unalias mpr 2>/dev/null
+mpr() {
+  gh pr merge -sd && \
+  git checkout "$(cb)" && \
+  git pull
+}

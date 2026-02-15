@@ -19,21 +19,45 @@
              }
 
  :main [
-        {:des "skhd is not working"
+        {:des "yabai focus window (alt + hjkl) - direct binding"
+         :rules [
+           [:!Oh ["/opt/homebrew/bin/yabai -m window --focus west"]]
+           [:!Oj ["/opt/homebrew/bin/yabai -m window --focus south"]]
+           [:!Ok ["/opt/homebrew/bin/yabai -m window --focus north"]]
+           [:!Ol ["/opt/homebrew/bin/yabai -m window --focus east"]]
+         ]
+        }
+        {:des "yabai swap window (alt + shift + hjkl)"
+         :rules [
+           [:!SOh ["/opt/homebrew/bin/yabai -m window --swap west"]]
+           [:!SOj ["/opt/homebrew/bin/yabai -m window --swap south"]]
+           [:!SOk ["/opt/homebrew/bin/yabai -m window --swap north"]]
+           [:!SOl ["/opt/homebrew/bin/yabai -m window --swap east"]]
+         ]
+        }
+        {:des "yabai warp window (alt + ctrl + hjkl)"
+         :rules [
+           [:!TOh ["/opt/homebrew/bin/yabai -m window --warp west"]]
+           [:!TOj ["/opt/homebrew/bin/yabai -m window --warp south"]]
+           [:!TOk ["/opt/homebrew/bin/yabai -m window --warp north"]]
+           [:!TOl ["/opt/homebrew/bin/yabai -m window --warp east"]]
+         ]
+        }
+        {:des "yabai space switching (alt + key) via simlayer"
          :rules [:option-mode
-           [:##g :!control+1]
-           [:##s :!control+2]
-           [:##c :!control+3]
-           [:##m :!control+4]
-           [:##d :!control+5]
-           [:##e :!control+6]
-           [:##o :!control+7]
-           [:##t :!control+8]
-           [:##6 :!control+9]
-           [:##7 :!control+option+1]
-           [:##8 :!control+option+2]
-           [:##9 :!control+option+3]
-           [:##0 :!control+option+4]
+           [:##g :!C1]
+           [:##s :!C2]
+           [:##c :!C3]
+           [:##m :!C4]
+           [:##d :!C5]
+           [:##e :!C6]
+           [:##o :!C7]
+           [:##t :!C8]
+           [:##6 :!C9]
+           [:##7 :!CO1]
+           [:##8 :!CO2]
+           [:##9 :!CO3]
+           [:##0 :!CO4]
          ]
         }
         {:des "f-mode for delimeters and ! ? $"
