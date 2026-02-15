@@ -1,43 +1,45 @@
--- load defaults i.e lua_lsp
+-- Load NvChad defaults
 require("nvchad.configs.lspconfig").defaults()
 
-local lspconfig = require "lspconfig"
-
--- EXAMPLE
-local servers = { "html", "cssls" }
 local nvlsp = require "nvchad.configs.lspconfig"
 
--- lsps with default config
-for _, lsp in ipairs(servers) do
-  lspconfig[lsp].setup {
+-- Servers with default config
+local default_servers = { "html", "cssls" }
+
+for _, lsp in ipairs(default_servers) do
+  vim.lsp.config[lsp] = {
     on_attach = nvlsp.on_attach,
     on_init = nvlsp.on_init,
     capabilities = nvlsp.capabilities,
   }
+  vim.lsp.enable(lsp)
 end
 
--- configuring single server, example: typescript
--- lspconfig.tsserver.setup {
---   on_attach = nvlsp.on_attach,
---   on_init = nvlsp.on_init,
---   capabilities = nvlsp.capabilities,
--- }
-lspconfig.eslint.setup({
+-- ESLint with auto-fix on save
+vim.lsp.config.eslint = {
   on_attach = function(client, bufnr)
+    nvlsp.on_attach(client, bufnr)
     vim.api.nvim_create_autocmd("BufWritePre", {
       buffer = bufnr,
       command = "EslintFixAll",
     })
   end,
-})
+  on_init = nvlsp.on_init,
+  capabilities = nvlsp.capabilities,
+}
+vim.lsp.enable('eslint')
 
-require'lspconfig'.tsserver.setup{
+-- TypeScript (ts_ls, formerly tsserver)
+vim.lsp.config.ts_ls = {
+  on_attach = nvlsp.on_attach,
+  on_init = nvlsp.on_init,
+  capabilities = nvlsp.capabilities,
   init_options = {
     plugins = {
       {
         name = "@vue/typescript-plugin",
         location = "/usr/local/lib/node_modules/@vue/typescript-plugin",
-        languages = {"javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
+        languages = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
       },
     },
   },
@@ -47,31 +49,36 @@ require'lspconfig'.tsserver.setup{
     "javascript.jsx",
     "typescript",
     "typescriptreact",
-    "typescript.tsx"
-  }
+    "typescript.tsx",
+  },
 }
+vim.lsp.enable('ts_ls')
 
-require'lspconfig'.tailwindcss.setup{
-  tailwindCSS = {
-    classAttributes = { "class", "className", "class:list", "classList", "ngClass" },
-    includeLanguages = {
-      eelixir = "html-eex",
-      eruby = "erb",
-      htmlangular = "html",
-      templ = "html"
+-- Tailwind CSS
+vim.lsp.config.tailwindcss = {
+  on_attach = nvlsp.on_attach,
+  on_init = nvlsp.on_init,
+  capabilities = nvlsp.capabilities,
+  settings = {
+    tailwindCSS = {
+      classAttributes = { "class", "className", "class:list", "classList", "ngClass" },
+      includeLanguages = {
+        eelixir = "html-eex",
+        eruby = "erb",
+        htmlangular = "html",
+        templ = "html",
+      },
+      lint = {
+        cssConflict = "warning",
+        invalidApply = "error",
+        invalidConfigPath = "error",
+        invalidScreen = "error",
+        invalidTailwindDirective = "error",
+        invalidVariant = "error",
+        recommendedVariantOrder = "warning",
+      },
+      validate = true,
     },
-    lint = {
-      cssConflict = "warning",
-      invalidApply = "error",
-      invalidConfigPath = "error",
-      invalidScreen = "error",
-      invalidTailwindDirective = "error",
-      invalidVariant = "error",
-      recommendedVariantOrder = "warning"
-    },
-    validate = true
-  }
+  },
 }
--- You must make sure volar is setup
--- e.g. require'lspconfig'.volar.setup{}
--- See volar's section for more information
+vim.lsp.enable('tailwindcss')

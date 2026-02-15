@@ -26,22 +26,30 @@ _has_remote() {
   command git remote get-url origin &>/dev/null
 }
 
-# Create GitHub repo and return the URL
+# Create GitHub repo and add remote
 _create_gh_repo() {
   local name="$1"
   local visibility="${2:---private}"
 
-  echo "Creating GitHub repo: $name ($visibility)..."
-  local output=$(gh repo create "$name" "$visibility" --source=. --remote=origin 2>&1)
-  local exit_status=$?
-
-  if [[ $exit_status -eq 0 ]]; then
-    echo "✓ Created repo and added origin"
-    return 0
-  else
-    echo "✗ Failed to create repo: $output"
+  echo "Creating GitHub repo: michaelmonetized/$name ($visibility)..."
+  
+  # Create repo (no --source, no magic)
+  if ! gh repo create "michaelmonetized/$name" "$visibility"; then
+    echo "✗ Failed to create repo"
     return 1
   fi
+  
+  echo "✓ Created repo"
+  
+  # Add remote origin with HTTPS URL
+  if git remote get-url origin &>/dev/null; then
+    git remote set-url origin "https://github.com/michaelmonetized/$name.git"
+  else
+    git remote add origin "https://github.com/michaelmonetized/$name.git"
+  fi
+  
+  echo "✓ Set origin: https://github.com/michaelmonetized/$name.git"
+  return 0
 }
 
 # Handle push when no remote is configured
@@ -175,7 +183,7 @@ function grcaocp() {
 function ga() {
   git add -A
   git diff --staged
-  gt create --message "$1"
+  gt create -a -m "$1"
   gt log short --stack
   gt submit
 }
