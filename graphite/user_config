@@ -1,5 +1,6 @@
 {
   "authToken": "IxF6su0oYuwoJWzGowGAYvj8M1xe8YTITTCxHGCIEcnp55yLuqFAMOD8eVXh",
+  "submitViaCli": true,
   "gtiConfigs": [
     {
       "key": "gti.install-uuid",
