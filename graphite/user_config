@@ -11,5 +11,8 @@
       "value": "true"
     }
   ],
-  "updateAutomatically": true
+  "updateAutomatically": true,
+  "allowSlashesInGeneratedBranchNames": true,
+  "allowUpperCaseInGeneratedBranchNames": true,
+  "branchReplacement": "-"
 }
