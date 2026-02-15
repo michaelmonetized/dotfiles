@@ -2,7 +2,8 @@
 # Source this file in .zshrc
 
 # Remove conflicting aliases so functions take precedence
-unalias n c g m a 2>/dev/null
+unalias n g a 2>/dev/null
+# Keep c='clear' and m='gt merge' as-is
 
 _alias_pick() {
   local prefix="$1"
@@ -29,7 +30,5 @@ _alias_pick() {
 }
 
 n() { _alias_pick "n" }
-c() { _alias_pick "c" }
 g() { _alias_pick "g" }
-m() { _alias_pick "m" }
 a() { _alias_pick "all" }
