@@ -32,6 +32,9 @@ fi
 # Aliases
 [[ ! -f ~/.config/zsh/aliases ]] || source ~/.config/zsh/aliases
 
+# Alias picker (fzf menus: n, c, g, m, a)
+[[ ! -f ~/.config/zsh/alias-picker ]] || source ~/.config/zsh/alias-picker
+
 # Shell integrations
 [[ ! -f ~/.config/zsh/integrations ]] || source ~/.config/zsh/integrations
 

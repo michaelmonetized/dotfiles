@@ -1,0 +1,35 @@
+# Alias picker functions - fzf menus for aliases by prefix
+# Source this file in .zshrc
+
+# Remove conflicting aliases so functions take precedence
+unalias n c g m a 2>/dev/null
+
+_alias_pick() {
+  local prefix="$1"
+  local selected
+  
+  if [[ "$prefix" == "all" ]]; then
+    # Show all aliases
+    selected=$(rg "^alias " ~/.config/zsh --no-filename -N | \
+      sed 's/^alias //' | \
+      fzf --height=40% --reverse --border --prompt="All aliases: ")
+  else
+    # Show aliases starting with prefix
+    selected=$(rg "^alias ${prefix}" ~/.config/zsh --no-filename -N | \
+      sed 's/^alias //' | \
+      fzf --height=40% --reverse --border --prompt="${prefix}* aliases: ")
+  fi
+  
+  if [[ -n "$selected" ]]; then
+    # Extract just the alias name (before the =)
+    local cmd="${selected%%=*}"
+    # Put it on the command line and execute
+    print -z "$cmd"
+  fi
+}
+
+n() { _alias_pick "n" }
+c() { _alias_pick "c" }
+g() { _alias_pick "g" }
+m() { _alias_pick "m" }
+a() { _alias_pick "all" }
