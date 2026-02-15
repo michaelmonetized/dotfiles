@@ -2,7 +2,7 @@
 # Source this file in .zshrc
 
 # Remove conflicting aliases so functions take precedence
-unalias n g a 2>/dev/null
+unalias n g a b 2>/dev/null
 # Keep c='clear' and m='gt merge' as-is
 
 _alias_pick() {
@@ -38,3 +38,17 @@ _alias_pick() {
 n() { _alias_pick "n" }
 g() { _alias_pick "g" }
 a() { _alias_pick "all" }
+
+b() {
+  local selected
+  selected=$(find ~/.local/bin ~/bin ~/.config/bin -maxdepth 10 -type f -executable 2>/dev/null | \
+    xargs -I {} basename {} | \
+    sort -u | \
+    fzf --height=40% --reverse --border --ansi \
+        --color="fg:#cdd6f4,bg:#1e1e2e,hl:#f38ba8,fg+:#cdd6f4,bg+:#313244,hl+:#f38ba8,info:#cba6f7,prompt:#94e2d5,pointer:#f5e0dc,marker:#f5e0dc,spinner:#f5e0dc,header:#94e2d5" \
+        --prompt="Binaries: ")
+  
+  if [[ -n "$selected" ]]; then
+    print -z "$selected"
+  fi
+}
