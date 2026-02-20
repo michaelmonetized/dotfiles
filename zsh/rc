@@ -18,7 +18,7 @@ fi
 [[ ! -f ~/.config/zsh/zinit ]] || source ~/.config/zsh/zinit
 
 # Powerlevel10k configuration
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+[[ ! -f ~/.config/zsh/p10k ]] || source ~/.config/zsh/p10k
 
 # Keybindings
 [[ ! -f ~/.config/zsh/keybindings ]] || source ~/.config/zsh/keybindings
