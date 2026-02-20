@@ -53,7 +53,7 @@ export NVM_DIR="$HOME/.nvm"
 [[ ! -f ~/.config/zsh/next ]] || source ~/.config/zsh/next
 
 # bun completions
-[ -s "/Users/michael/.bun/_bun" ] && source "/Users/michael/.bun/_bun"
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
 # bun
 export BUN_INSTALL="$HOME/.bun"

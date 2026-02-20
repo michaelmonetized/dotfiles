@@ -217,7 +217,7 @@
         ;; Disabled - WhisperCPPonEverything handles Ctrl+W now
         ;; {:des "Ctrl+W toggles live speech-to-text"
         ;;  :rules [
-        ;;    [:!Tw ["/Users/michael/bin/stt-live"]]
+        ;;    [:!Tw ["$HOME/bin/stt-live"]]
         ;;  ]}
 
         ;; Using keys for CTRL etc (home-row-mods) isn't practical with plain Karabiner.

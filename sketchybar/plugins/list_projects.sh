@@ -6,13 +6,13 @@ PDIR="$HOME/Projects"
 PLIST=$(fd --type d --hidden --max-depth 1 '.' $PDIR | sed 's/ /\\ /g')
 
 for PPATH in "$PLIST"; do
-  echo "$PPATH" >>"/Users/michael/sketchybar.log"
+  echo "$PPATH" >>"$HOME/sketchybar.log"
   PNAME=$(basename "$PPATH")
-  echo "$PNAME" >>"/Users/michael/sketchybar.log"
+  echo "$PNAME" >>"$HOME/sketchybar.log"
 
   if [ -d "$PPATH" ]; then
     PSAFENAME=$(echo "$PNAME" | sed 's/[^a-zA-Z0-9_]/_/g')
-    echo "$PSAFENAME" >>"/Users/michael/sketchybar.log"
+    echo "$PSAFENAME" >>"$HOME/sketchybar.log"
 
     PCLICK="~/.local/bin/neovim-ide \"$PPATH\" \"$PSAFENAME\"; sketchybar --set projects popup.drawing=toggle"
     PICON=""
@@ -35,11 +35,11 @@ for PPATH in "$PLIST"; do
               if [ ! -f "$PPATH/README.md" ]; then
                 PCLICK="open -a Finder \"$PPATH\"; sketchybar --set projects popup.drawing=toggle"
                 SPLIST=$(fd --type d --hidden --max-depth 1 '.' "$PPATH" | sed 's/ /\\ /g')
-                echo "$SPLIST" >>"/Users/michael/sketchybar.log"
+                echo "$SPLIST" >>"$HOME/sketchybar.log"
 
                 for SPPATH in $SPLIST; do
                   SNAME=$(basename $SPPATH)
-                  echo "$SPPATH" >>"/Users/michael/sketchybar.log"
+                  echo "$SPPATH" >>"$HOME/sketchybar.log"
 
                   if [ -d "$SPPATH" ]; then
                     SPSAFENAME=$(echo $SNAME | sed 's/[^a-zA-Z0-9_]/_/g')
@@ -89,7 +89,7 @@ for PPATH in "$PLIST"; do
                   fi
                 done
 
-                echo "sproject.$SPSAFENAME" >>"/Users/michael/sketchybar.log"
+                echo "sproject.$SPSAFENAME" >>"$HOME/sketchybar.log"
               fi
             fi
           fi
@@ -117,5 +117,5 @@ for PPATH in "$PLIST"; do
       --subscribe project."$PSAFENAME" mouse.entered mouse.exited
   fi
 
-  echo "project.$PSAFENAME" >>"/Users/michael/sketchybar.log"
+  echo "project.$PSAFENAME" >>"$HOME/sketchybar.log"
 done

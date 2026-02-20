@@ -92,7 +92,7 @@ alt-enter = 'exec-and-forget open -n /Applications/Ghostty.app/'
 alt-leftSquareBracket = 'exec-and-forget open -n "/Applications/Visual Studio Code.app"'
 alt-2 = 'exec-and-forget open -n "/Applications/Spike.app"'
 alt-n = 'exec-and-forget open -n "/Applications/Notion.app"'
-alt-s = 'exec-and-forget open -n "/Users/michael/Applications/Voice.app"'
+alt-s = 'exec-and-forget open -n "$HOME/Applications/Voice.app"'
 alt-shift-s = 'resize width 580'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#layout

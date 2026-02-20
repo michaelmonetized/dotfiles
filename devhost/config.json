@@ -2,7 +2,7 @@
   "hosts": [
     {
       "name": "bestwnc-com",
-      "projectPath": "/Users/michael/Projects/bestwnc.com",
+      "projectPath": "$HOME/Projects/bestwnc.com",
       "projectName": "bestwnc-com",
       "port": 3001,
       "hostname": "bestwnc-com.localhost"
@@ -10,5 +10,5 @@
   ],
   "basePort": 3001,
   "domain": ".localhost",
-  "caddyfilePath": "/Users/michael/.config/devhost/Caddyfile"
+  "caddyfilePath": "$HOME/.config/devhost/Caddyfile"
 }
