@@ -6,4 +6,4 @@
 /thefuck
 .env
 .DS_Store
-
+/notion/api_key
