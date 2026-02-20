@@ -1784,20 +1784,44 @@ typeset -g POWERLEVEL9K_PACKAGE_CONTENT_EXPANSION='${P9K_PACKAGE_NAME//\%/%%} v$
   # Custom git repo status segment
   # Shows "NOT A REPO" (orange) or "NO REMOTE" (red) when applicable
   # Only displays when there's an issue; hidden when everything is normal
+  #
+  # Uses per-directory caching to avoid blocking the prompt with git calls.
+  # Cache is invalidated when the directory changes.
+  typeset -gA _git_repo_status_cache  # dir -> "ok"|"no_repo"|"no_remote"
+  typeset -g  _git_repo_status_last_dir=""
+
   function prompt_git_repo_status() {
-    # Check if we're in a git repo
-    if ! git rev-parse --is-inside-work-tree &>/dev/null 2>&1; then
-      # Orange background (208), white foreground - NOT A REPO
-      p10k segment -b 208 -f 15 -i '󰊢' -t 'NOT A REPO'
-    elif ! git remote get-url origin &>/dev/null 2>&1; then
-      # Red background (1), white foreground - NO REMOTE
-      p10k segment -b 1 -f 15 -i '󰊢' -t 'NO REMOTE'
+    local dir=$PWD
+
+    # Only re-check when directory changes
+    if [[ $dir != $_git_repo_status_last_dir ]]; then
+      _git_repo_status_last_dir=$dir
+      if ! git rev-parse --is-inside-work-tree &>/dev/null 2>&1; then
+        _git_repo_status_cache[$dir]="no_repo"
+      elif ! git remote get-url origin &>/dev/null 2>&1; then
+        _git_repo_status_cache[$dir]="no_remote"
+      else
+        _git_repo_status_cache[$dir]="ok"
+      fi
     fi
-    # If repo exists and has remote, show nothing (let vcs handle it)
+
+    case ${_git_repo_status_cache[$dir]} in
+      no_repo)
+        # Orange background (208), white foreground - NOT A REPO
+        p10k segment -b 208 -f 15 -i '󰊢' -t 'NOT A REPO'
+        ;;
+      no_remote)
+        # Red background (1), white foreground - NO REMOTE
+        p10k segment -b 1 -f 15 -i '󰊢' -t 'NO REMOTE'
+        ;;
+    esac
+    # If "ok", show nothing (let vcs handle it)
   }
 
+  # Instant prompt: show nothing — let the full prompt lazy-load the segment
   function instant_prompt_git_repo_status() {
-    prompt_git_repo_status
+    # no-op: avoids blocking instant prompt with git calls
+    :
   }
 
   # Styling for git_repo_status segment
