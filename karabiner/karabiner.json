@@ -4956,20 +4956,6 @@
           } ],
           "type" : "basic"
         } ]
-      }, {
-        "description" : "Ctrl+W toggles live speech-to-text",
-        "manipulators" : [ {
-          "from" : {
-            "key_code" : "w",
-            "modifiers" : {
-              "mandatory" : [ "left_control" ]
-            }
-          },
-          "to" : [ {
-            "shell_command" : "/Users/michael/bin/stt-live"
-          } ],
-          "type" : "basic"
-        } ]
       } ]
     },
     "devices" : [ {
