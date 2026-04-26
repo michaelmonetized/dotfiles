@@ -1,4 +1,5 @@
 **/raycast/
+**/node_modules/
 **/configstore/
 **/.env
 **/.env.*
