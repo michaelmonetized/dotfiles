@@ -91,7 +91,7 @@ _fzf_comprun() {
   esac
 }
 
-export BAT_THEME="Monokai Extended Light"
+export BAT_THEME="Catppuccin Mocha"
 
 # fzf-tab preview configuration (matches _fzf_comprun behavior)
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza --tree --color=always --all $realpath | head -200'

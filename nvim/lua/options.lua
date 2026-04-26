@@ -5,6 +5,45 @@ require "nvchad.options"
 -- local o = vim.o
 -- o.columns = 160
 -- o.cursorlineopt ='both' -- to enable cursorline!
+local o = vim.o
+
+o.number = true
+o.relativenumber = true
+
+-- Re-apply after NvChad loads (it can override during startup)
+vim.api.nvim_create_autocmd("VimEnter", {
+  callback = function()
+    vim.o.number = true
+    vim.o.relativenumber = true
+  end,
+})
+
+-- Save files in-place so external file watchers like Turbopack see consistent
+-- write events instead of backup/rename-style churn.
+-- Diagnostics: truncate inline virtual text, show full message in float
+vim.diagnostic.config({
+  virtual_text = {
+    suffix = "",
+    format = function(diagnostic)
+      local max = 60
+      local msg = diagnostic.message:gsub("\n", " ")
+      if #msg > max then
+        return msg:sub(1, max) .. "…"
+      end
+      return msg
+    end,
+  },
+  float = {
+    max_width = 80,
+    wrap = true,
+    border = "rounded",
+    source = true,
+  },
+})
+
+o.backup = false
+o.writebackup = false
+o.backupcopy = "yes"
 
 -- ── Auto-detect macOS appearance (Catppuccin Mocha ↔ Latte) ──
 -- Checks system theme on startup and via a timer so nvim follows

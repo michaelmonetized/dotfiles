@@ -5,3 +5,5 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls -G "$realpath"'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls -G "$realpath"'
 
 source ~/.raycompletions
+source ~/.config/zsh/completions.gog
+source /opt/homebrew/share/zsh/site-functions

@@ -69,3 +69,5 @@ export PATH=$PATH:$(go env GOPATH)/bin
 # Cursor
 export PATH="$HOME/.local/bin:$PATH"
 
+source "$HOME/.config/zsh/node"
+

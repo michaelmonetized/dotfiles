@@ -2,10 +2,12 @@ alias nano='nvim'
 alias micro='nvim'
 alias ls='eza --color=always --long --git --icons=always --no-filesize --no-time --no-permissions --no-user'
 alias lt='eza --tree --git-ignore --color=always --icons=always --no-filesize --no-time --no-permissions --no-user'
-alias la='eza --color=always --long --git --icons=always --no-filesize --no-time --no-permissions --no-user --all'
+alias la='eza --color=always --long --git --icons=always --extended --total-size --all'
 alias lg='lazygit'
 alias c='clear'
 alias cld="claude --dangerously-skip-permissions"
+alias cxd="codex --dangerously-bypass-approvals-and-sandbox"
+alias gmd="gemini -y"
 alias np="~/bin/newproject" #pops an fzf menu with options ( hustlestack,  swift,  cli,  hustlestack-web-native-monorepo)
 alias npr='~/bin/stack "$@"'
 alias ni='gh issue create "$@"'
@@ -26,3 +28,8 @@ mpr() {
   git checkout "$(cb)" && \
   git pull
 }
+alias o='open'
+alias q='exit'
+alias ot='NODE_OPTIONS=--use-system-ca openclaw tui'
+alias t='tmux'
+alias ta='tmux a'

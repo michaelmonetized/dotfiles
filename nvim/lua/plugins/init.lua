@@ -64,6 +64,7 @@ return {
     "nvim-treesitter/nvim-treesitter",
     opts = {
       ensure_installed = { "vim", "lua", "vimdoc", "html", "css" },
+      matchup = { enable = true },
     },
   },
   {
@@ -86,6 +87,18 @@ return {
     end,
   },
   { "catppuccin/nvim", name = "catppuccin", priority = 1000, lazy = false },
+  {
+    "windwp/nvim-ts-autotag",
+    event = "InsertEnter",
+    opts = {},
+  },
+  {
+    "andymass/vim-matchup",
+    event = "BufReadPost",
+    config = function()
+      vim.g.matchup_matchparen_offscreen = { method = "popup" }
+    end,
+  },
 }
 
 -- updated notify config

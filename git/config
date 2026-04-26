@@ -1,0 +1,104 @@
+[user]
+	name = Michael Hurley
+	email = michaelmonetized@gmail.com
+[maintenance]
+  auto = true
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[init]
+	defaultBranch = main
+[pull]
+	rebase = true
+[push]
+	autoSetupRemote = true
+	followTags = true
+  useBitmaps = true
+[coderabbit]
+	machineId = cli/9a050a23548144018410f03bd1973b4f
+[credential "https://github.com"]
+	helper = !/opt/homebrew/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = !/opt/homebrew/bin/gh auth git-credential
+[credential]
+	helper = osxkeychain
+[column]
+	ui = auto
+[branch]
+	sort = -committerdate
+[tag]
+	sort = version:refname
+[diff]
+	algorithm = histogram
+	colorMoved = plain
+	mnemonicPrefix = true
+	renames = true
+  colorMoved = blocks
+[fetch]
+	prune = true
+	pruneTags = true
+[rerere]
+	enabled = true
+	autoupdate = true
+[merge]
+	conflictstyle = zdiff3
+[core]
+	autocrlf = input
+	fsmonitor = true
+	untrackedCache = true
+  precomposeunicode = true
+	excludesfile = /Users/michael/.config/git/ignore
+[help]
+	autocorrect = prompt
+[commit]
+	verbose = true
+[rebase]
+	autoSquash = true
+	autoStash = true
+	updateRefs = true
+[color]
+	ui = auto
+[grep]
+  lineNumber = true
+[alias]
+	lg = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
+	st = status
+	co = checkout
+  br = branch
+  unstage = reset HEAD --
+  amend = commit --amend --no-edit
+  last = log -1 HEAD
+  l = log --oneline -n 15
+  gone = !git checkout main && git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d
+  nuke = "!f() {\
+    GURL=$(git remote get-url origin);\
+    git filter-repo --path \"$1\" --invert-paths --force;\
+    git remote add origin \"$GURL\";\
+    git push origin --force --all;\
+    echo 'History scrubbed. Remote cleaned. Notify the team and rotate all secrets';\
+  }; f"
+  cr = "!f() { \
+    if ! git rev-parse --is-inside-work-tree > /dev/null 2>&1; then \
+      printf \"Initialize a git repo in $PWD? (y/N): \"; read -r GINIT; \
+      if echo \"$GINIT\" | grep -iq '^y'; then \
+        git init && git add -A && git commit -am \"init\"; \
+      else \
+        echo \"Aborting: not a git repository.\"; return 1; \
+      fi; \
+    fi; \
+    GURL=\"git@github.com:michaelmonetized/$(basename \"$PWD\").git\"; \
+    if git remote get-url origin > /dev/null 2>&1; then \
+      echo \"Remote 'origin' already exists. Skipping remote add.\"; \
+    else \
+      if [ \"$\" = \"--public\" ]; then GVIS=\"--public\"; \
+      elif [ \"$\" = \"--private\" ]; then GVIS=\"--private\"; \
+      else \
+        printf \"Make repo public? (y/N): \"; read -r REPLY; \
+        if echo \"$REPLY\" | grep -iq '^y'; then GVIS=\"--public\"; else GVIS=\"--private\"; fi; \
+      fi; \
+      gh repo create \"$(basename \"$PWD\")\" $GVIS --source=. --remote=origin; \
+    fi; \
+    git push -u origin $(git branch --show-current); \
+  }; f"
