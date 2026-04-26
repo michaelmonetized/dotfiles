@@ -1,10 +1,7 @@
-/raycast
-/configstore
-/gh
-/iterm2
-/micro
-/thefuck
-.env
-.DS_Store
-/notion/api_key
-/stripe
+**/raycast/
+**/configstore/
+**/.env
+**/.env.*
+**/.DS_Store
+**/notion/api_key
+**/stripe/
