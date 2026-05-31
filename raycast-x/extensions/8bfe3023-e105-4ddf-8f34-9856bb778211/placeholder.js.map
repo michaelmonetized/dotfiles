@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../src/placeholder.ts"],
+  "sourcesContent": ["import { showHUD } from \"@raycast/api\";\n\nexport default async function Command() {\n  await showHUD(\"Placeholder until AI extensions don't require a command\");\n  return;\n}\n"],
+  "mappings": "yaAAA,IAAAA,EAAA,GAAAC,EAAAD,EAAA,aAAAE,IAAA,eAAAC,EAAAH,GAAA,IAAAI,EAAwB,wBAExB,eAAOF,GAAiC,CACtC,QAAM,WAAQ,yDAAyD,CAEzE",
+  "names": ["placeholder_exports", "__export", "Command", "__toCommonJS", "import_api"]
+}

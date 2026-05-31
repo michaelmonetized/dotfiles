@@ -279,7 +279,7 @@ export TMUX_POWERLINE_SEG_PWD_MAX_LEN="40"
 
 # time.sh {
 # date(1) format for the time. Americans might want to have "%I:%M %p".
-export TMUX_POWERLINE_SEG_TIME_FORMAT="%H:%M"
+export TMUX_POWERLINE_SEG_TIME_FORMAT="%a %b %-d %I:%M:%S %p"
 # Change this to display a different timezone than the system default.
 # Use TZ Identifier like "America/Los_Angeles"
 # export TMUX_POWERLINE_SEG_TIME_TZ=""

@@ -29,29 +29,33 @@ TMUX_POWERLINE_DEFAULT_RIGHTSIDE_SEPARATOR=${TMUX_POWERLINE_DEFAULT_RIGHTSIDE_SE
 # shellcheck disable=SC2128
 if [ -z "$TMUX_POWERLINE_WINDOW_STATUS_CURRENT" ]; then
 	TMUX_POWERLINE_WINDOW_STATUS_CURRENT=(
-		"#[$(format regular)]"
+		"#[fg=colour12,bg=terminal,nobold,noitalics,nounderscore]"
 		""
-		"#[$(format inverse)]"
+		"#[fg=colour0,bg=colour12,nobold,noitalics,nounderscore]"
 		"  #W:#I  "
-		"#[$(format regular)]"
-		""
+		"#[fg=colour12,bg=terminal,nobold,noitalics,nounderscore]"
+		"#{?window_end_flag,,}"
 	)
 fi
 
 # shellcheck disable=SC2128
 if [ -z "$TMUX_POWERLINE_WINDOW_STATUS_STYLE" ]; then
 	TMUX_POWERLINE_WINDOW_STATUS_STYLE=(
-		"$(format regular)"
+		"fg=colour15,bg=colour0,nobold,noitalics,nounderscore"
 	)
 fi
 
 # shellcheck disable=SC2128
 if [ -z "$TMUX_POWERLINE_WINDOW_STATUS_FORMAT" ]; then
 	TMUX_POWERLINE_WINDOW_STATUS_FORMAT=(
-		"#[$(format regular)]"
+		"#[fg=colour0,bg=terminal,nobold,noitalics,nounderscore]"
+		""
+		"#[fg=colour15,bg=colour0,nobold,noitalics,nounderscore]"
 		"  #I#{?window_flags,#F, } "
-		"$TMUX_POWERLINE_SEPARATOR_RIGHT_THIN"
 		"  #W "
+		"#[fg=colour0,bg=terminal,nobold,noitalics,nounderscore]"
+		"#{?window_end_flag,,}"
+		"#[default]"
 	)
 fi
 
@@ -130,7 +134,7 @@ if [ -z "$TMUX_POWERLINE_RIGHT_STATUS_SEGMENTS" ]; then
 		#"pwd 0 15"
 		#"macos_notification_count 29 0"
 		#"cpu 240 136"
-		"tmux_mem_cpu_load 15 0"
+		"time 15 0"
 		#"ifstat 2 0  15 2"
 		"uptime 3 0  15 3"
 		#"date_day 10 0 "
@@ -145,6 +149,6 @@ if [ -z "$TMUX_POWERLINE_RIGHT_STATUS_SEGMENTS" ]; then
 		#"date 235 136 ${TMUX_POWERLINE_SEPARATOR_LEFT_THIN}"
 		#"time 235 136 ${TMUX_POWERLINE_SEPARATOR_LEFT_THIN}"
 		#"utc_time 235 136 ${TMUX_POWERLINE_SEPARATOR_LEFT_THIN}"
-		"right 6 0 default_separator no_sep_bg_color no_sep_fg_color both_disable separator_disable"
+		"right terminal 6 default_separator no_sep_bg_color no_sep_fg_color both_disable separator_disable"
 	)
 fi

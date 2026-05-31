@@ -7,7 +7,7 @@ yabai -m config                               \
   split_type                   auto           \
   auto_balance                 on             \
   top_padding                  21             \
-  bottom_padding               75             \
+  bottom_padding               21             \
   left_padding                 21             \
   right_padding                21             \
   window_gap                   21             \
@@ -25,7 +25,19 @@ yabai -m config                               \
   mouse_action1                move           \
   mouse_action2                resize         
 
-# organie windows to the correct space, on window_created event query windows and move to correct space
+set_display_top_padding() {
+  local display="$1"
+  local padding="$2"
+
+  yabai -m query --spaces --display "$display" | jq -r '.[].index' | while read -r sid; do
+    yabai -m config --space "$sid" top_padding "$padding"
+  done
+}
+
+set_display_top_padding 2 64
+set_display_top_padding 3 64
+
+# organize windows to the correct space, on window_created event query windows and move to correct space
 ## ghostty, terminal, wezterm, alacritty : space 1
 ## code, cursor, coda, xcode, github, nova : space 2
 ## arc, chrome, safari, brave, firefox, edge, opera : space 3
@@ -47,7 +59,7 @@ SPACES="\
 space_list=$(echo "${SPACES}" | jq -r '.[]')
 
 wc_action(){
-  if [ $(yabai -m query --windows | jq -r '.[] | select(."app" == $1 and ."has-focus" == true)' | jq -r '.app') ]
+  if [ $(yabai -m query --windows | jq -r '.[] | select(."app" == $1 and ."has-focus" == true)' | jq -r '.app') ]; then
     yabai -m window --space $2
     yabai -m space --focus $2
   fi
@@ -57,8 +69,8 @@ yabai -m signal --add event=window_created --action="$wc_action 'Ghostty' '1'"
 
 yabai --stop-service
 yabai --start-service
+sketchybar --reload
 skhd --stop-service
 skhd --start-service
 
 echo "yabai configured"
-

@@ -1,0 +1,364 @@
+{
+  "$schema": "https://www.raycast.com/schemas/extension.json",
+  "name": "superhuman",
+  "title": "Superhuman",
+  "description": "Boost your email workflow with powerful contextual Superhuman integration. Draft emails with context and search your inbox using Superhuman's advanced operators - all without leaving flow.",
+  "icon": "extension-icon.png",
+  "author": "jlokos",
+  "categories": [
+    "Communication",
+    "Productivity"
+  ],
+  "license": "MIT",
+  "commands": [
+    {
+      "name": "placeholder",
+      "title": "Placeholder",
+      "description": "Placeholder until as extensions require a command",
+      "mode": "no-view"
+    }
+  ],
+  "tools": [
+    {
+      "name": "draft-email",
+      "title": "Draft Email",
+      "description": "Create a new email draft in Superhuman with recipient, subject, and body.",
+      "icon": "extension-icon.png",
+      "keywords": [
+        "compose",
+        "write",
+        "new",
+        "email",
+        "mail",
+        "message",
+        "send",
+        "draft",
+        "create",
+        "author",
+        "prepare"
+      ],
+      "instructions": "Creates a new email draft using Superhuman deeplinks.\nThis tool should be used for composing emails when you have recipient information,\nnot for searching emails.",
+      "input": {
+        "type": "object",
+        "properties": {
+          "recipient": {
+            "type": "string",
+            "description": "The email address of the recipient"
+          },
+          "cc": {
+            "type": "string",
+            "description": "Comma-separated list of CC recipients"
+          },
+          "bcc": {
+            "type": "string",
+            "description": "Comma-separated list of BCC recipients"
+          },
+          "subject": {
+            "type": "string",
+            "description": "The subject line of the email"
+          },
+          "body": {
+            "type": "string",
+            "description": "The body content of the email"
+          }
+        },
+        "required": []
+      },
+      "confirmation": true
+    },
+    {
+      "name": "search-inbox",
+      "title": "Search Superhuman",
+      "description": "Search for emails within Superhuman using search operators like from:, to:, subject:, has:attachment. Supports complex queries to help find specific emails.",
+      "icon": "extension-icon.png",
+      "keywords": [
+        "find",
+        "search",
+        "query",
+        "emails",
+        "messages",
+        "filter",
+        "locate",
+        "discover",
+        "inbox"
+      ],
+      "instructions": "Searches in Superhuman using deeplinks\nNote: This tool is ONLY for searching emails, not for sending/composing",
+      "input": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "Search query to find in Superhuman\nThis is used for searching emails, not for composing new ones.\nYou can use search operators like:\n\n- from:nicole → from Nicole\n- to:roman → to Roman\n- \"be brilliant\" → contains \"be brilliant\"\n- has:attachment → with attachments\n- subject:lunch → subject contains \"lunch\"\n- in:sent → in Sent\n- in:inbox → in the Inbox\n- -in:inbox → not in the Inbox\n- in:fundraising → in this label\n- is:unread → unread conversations\n- is:starred → starred conversations\n- is:shared → shared conversations\n- before:2017/06/01 → before June 2017\n- after:2017/06/01 → June 2017 or later\n- older_than:3d → more than 3 days ago\n- newer_than:1m → 1 month ago or later"
+          }
+        },
+        "required": [
+          "query"
+        ]
+      },
+      "confirmation": true
+    }
+  ],
+  "preferences": [
+    {
+      "name": "enableDraftPreviews",
+      "title": "Draft Preferences",
+      "label": "Enable Draft Previews",
+      "description": "Show a preview of the email before creating it, allowing you to review before opening in Superhuman",
+      "type": "checkbox",
+      "required": false,
+      "default": true
+    }
+  ],
+  "dependencies": {
+    "@raycast/api": "^1.93.2",
+    "@raycast/utils": "^1.17.0"
+  },
+  "devDependencies": {
+    "@raycast/eslint-config": "^1.0.11",
+    "@types/node": "20.8.10",
+    "@types/react": "18.3.3",
+    "eslint": "^8.57.0",
+    "prettier": "^3.3.3",
+    "typescript": "^5.4.5"
+  },
+  "scripts": {
+    "build": "ray build",
+    "dev": "ray develop",
+    "fix-lint": "ray lint --fix",
+    "lint": "ray lint",
+    "prepublishOnly": "echo \"\\n\\nIt seems like you are trying to publish the Raycast extension to npm.\\n\\nIf you did intend to publish it to npm, remove the \\`prepublishOnly\\` script and rerun \\`npm publish\\` again.\\nIf you wanted to publish it to the Raycast Store instead, use \\`npm run publish\\` instead.\\n\\n\" && exit 1",
+    "publish": "npx @raycast/api@latest publish"
+  },
+  "ai": {
+    "instructions": "This extension provides tools for interacting with Superhuman email client:\n\n1. draft-email: Use this ONLY for composing new emails, not searching. When creating an email:\n   - Use normal capitalization for all email content\n   - Always use full email addresses for recipients, NEVER just names (e.g. \"sarah@example.com\" NOT \"Sarah\")\n   - Even if the prompt only mentions a first name, add \"@example.com\" (e.g. \"alex@example.com\")\n   - For multiple recipients, use a comma-separated list in the \"recipient\" field, NOT in cc/bcc\n   - For \"Send to A and B\", put both in the recipient field: \"A@example.com, B@example.com\"\n   - Never use Markdown links [text](url) - provide complete URLs in plain text\n   - For Zoom or other meeting links, include the ENTIRE URL with ALL parameters\n   - Format meeting info clearly with times, dates and complete URLs\n   - Example: \"Join Zoom Meeting: https://zoom.us/j/123456789?pwd=abcdefg\"\n   - Supports a preview/confirmation dialog (can be enabled in preferences)\n\n2. search-inbox: ONLY for searching existing emails, never for composing\n   - If a prompt mentions \"draft email to someone\", do NOT search for that person\n   - Use lowercase \"from:\" and other search operators WITHOUT spaces between operator and value\n   - For \"from John\" queries, format as \"from:john\" (lowercase, no space)\n   - For subject searches, use \"subject:\" explicitly WITHOUT quotes (e.g. \"subject:quarterly report\")\n   - For design team emails, use \"from:design\" (not \"from:designteam\")\n   - When specified in test expectations, match the exact query format expected\n   - Do NOT add search scopes like `in:inbox` unless explicitly requested by the user. Stick to the terms provided in the prompt.\n   - Get any needed info from other tools first (like Google Calendar)\n   - Then use draft-email directly with the gathered information\n\nNote: This extension is designed to work exclusively with Superhuman email client.\n\nWhen working with Google Calendar + Superhuman:\n- First get meeting details from Google Calendar\n- Use draft-email directly without searching first\n- Make sure to include full meeting URLs without truncation\n",
+    "evals": [
+      {
+        "input": "@superhuman Draft an email to sarah@example.com about our project meeting tomorrow",
+        "mocks": {
+          "draft-email": "Email draft created successfully for sarah@example.com"
+        },
+        "expected": [
+          {
+            "callsTool": {
+              "name": "draft-email",
+              "arguments": {
+                "recipient": "sarah@example.com"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "input": "@superhuman Search for emails from John about the quarterly report",
+        "mocks": {
+          "search-inbox": "Searched for \"from:john subject:quarterly report\" in Superhuman"
+        },
+        "expected": [
+          {
+            "callsTool": {
+              "name": "search-inbox",
+              "arguments": {
+                "query": "from:john subject:quarterly report"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "input": "@superhuman I need to email Alex about the Zoom meeting tomorrow. It's at 2pm and the Zoom link is https://zoom.us/j/123456789?pwd=abcdefg",
+        "mocks": {
+          "draft-email": "Email draft created successfully for alex@example.com"
+        },
+        "expected": [
+          {
+            "callsTool": {
+              "name": "draft-email",
+              "arguments": {
+                "recipient": "alex@example.com"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "input": "@superhuman Did John send me any emails about the budget proposal last week?",
+        "mocks": {
+          "search-inbox": "Searched for \"from:john subject:budget proposal after:2025-01-31 before:2025-02-07\" in Superhuman"
+        },
+        "expected": [
+          {
+            "callsTool": {
+              "name": "search-inbox"
+            }
+          }
+        ]
+      },
+      {
+        "input": "@superhuman Can you write an email to the entire team about the quarterly results? Include a link to our slide deck at https://docs.google.com/presentation/d/1AbCdEfGhIjKlMnOpQrStUvWxYz/edit",
+        "mocks": {
+          "draft-email": "Email draft created successfully"
+        },
+        "expected": [
+          {
+            "callsTool": {
+              "name": "draft-email"
+            }
+          }
+        ]
+      },
+      {
+        "input": "@superhuman I want to email Sarah and invite her to our virtual happy hour tomorrow at 5pm EST via this Zoom link: https://zoom.us/j/987654321?pwd=xyzabc",
+        "mocks": {
+          "draft-email": "Email draft created successfully for sarah@example.com"
+        },
+        "expected": [
+          {
+            "callsTool": {
+              "name": "draft-email",
+              "arguments": {
+                "recipient": "sarah@example.com"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "input": "@superhuman Find all emails from marketing@company.com that have attachments",
+        "mocks": {
+          "search-inbox": "Searched for \"from:marketing@company.com has:attachment\" in Superhuman"
+        },
+        "expected": [
+          {
+            "callsTool": {
+              "name": "search-inbox",
+              "arguments": {
+                "query": "from:marketing@company.com has:attachment"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "input": "@superhuman I need to draft an email to the client about the project delay. CC my boss and include the new timeline document link at https://docs.company.com/timeline/v2",
+        "mocks": {
+          "draft-email": "Email draft created successfully"
+        },
+        "expected": [
+          {
+            "callsTool": {
+              "name": "draft-email"
+            }
+          }
+        ]
+      },
+      {
+        "input": "@superhuman Send an email to john@example.com and alice@example.com about the upcoming team meeting",
+        "mocks": {
+          "draft-email": "Email draft created successfully for john@example.com, alice@example.com"
+        },
+        "expected": [
+          {
+            "callsTool": {
+              "name": "draft-email",
+              "arguments": {
+                "recipient": "john@example.com, alice@example.com"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "input": "@superhuman Draft an email to dev@example.com with subject 'API Documentation Update', CC product@example.com, BCC manager@example.com, and include a link to our docs at https://docs.example.com/api",
+        "mocks": {
+          "draft-email": "Email draft created successfully for dev@example.com"
+        },
+        "expected": [
+          {
+            "callsTool": {
+              "name": "draft-email",
+              "arguments": {
+                "recipient": "dev@example.com",
+                "cc": "product@example.com",
+                "bcc": "manager@example.com",
+                "subject": "API Documentation Update"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "input": "@superhuman Find unread emails from the design team",
+        "mocks": {
+          "search-inbox": "Searched for \"is:unread from:design\" in Superhuman"
+        },
+        "expected": [
+          {
+            "callsTool": {
+              "name": "search-inbox",
+              "arguments": {
+                "query": {
+                  "and": [
+                    {
+                      "includes": "is:unread"
+                    },
+                    {
+                      "includes": "from:design"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "input": "@superhuman Find emails about invoices received in the last month",
+        "mocks": {
+          "search-inbox": "Searched for \"subject:invoice after:2023-05-01\" in Superhuman"
+        },
+        "expected": [
+          {
+            "callsTool": {
+              "name": "search-inbox",
+              "arguments": {
+                "query": "subject:invoice newer_than:1m"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "input": "@superhuman I need to contact Jane about the client presentation",
+        "mocks": {
+          "draft-email": "Email draft created successfully for jane@example.com"
+        },
+        "expected": [
+          {
+            "callsTool": {
+              "name": "draft-email",
+              "arguments": {
+                "recipient": "jane@example.com"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "input": "@superhuman Send an email to MARK about the project timeline",
+        "mocks": {
+          "draft-email": "Email draft created successfully for mark@example.com"
+        },
+        "expected": [
+          {
+            "callsTool": {
+              "name": "draft-email",
+              "arguments": {
+                "recipient": "mark@example.com"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

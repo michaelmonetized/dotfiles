@@ -43,6 +43,7 @@ require "configs.noice"
 require "configs.notify"
 require "configs.nvimtree"
 require "configs.supermaven"
+require("configs.codex_inline").setup()
 -- require "configs.transparent"
 
 vim.schedule(function()

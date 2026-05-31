@@ -1,4 +1,7 @@
 {
+  "global" : {
+    "show_additional_menu_items" : true
+  },
   "profiles" : [ {
     "complex_modifications" : {
       "parameters" : {
@@ -4964,7 +4967,8 @@
         "product_id" : 45085,
         "vendor_id" : 1133
       },
-      "ignore" : false
+      "ignore" : false,
+      "pointing_motion_xy_multiplier" : 3.0
     } ],
     "fn_function_keys" : [ {
       "from" : {

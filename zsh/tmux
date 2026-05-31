@@ -10,6 +10,7 @@ set -g base-index 1              # start indexing windows at 1 instead of 0
 set -g detach-on-destroy off     # don't exit from tmux when closing a session
 set -g escape-time 0             # zero-out escape time delay
 set -g history-limit 1000000     # increase history size (from 2,000)
+setw -g mode-keys vi             # use vi keys in copy/scrollback mode
 set -g renumber-windows on       # renumber all windows when any window is closed
 set -g pane-border-status top
 set-option -g status-position top
@@ -24,6 +25,12 @@ bind - split-window -v -c "#{pane_current_path}"
 
 unbind '"'
 unbind %
+
+bind [ copy-mode
+bind-key -T copy-mode-vi v send -X begin-selection
+bind-key -T copy-mode-vi C-v send -X rectangle-toggle
+bind-key -T copy-mode-vi y send -X copy-selection-and-cancel
+bind-key -n M-v copy-mode
 
 unbind x
 bind x "kill-pane"
@@ -65,4 +72,3 @@ set -g @sessionx-custom-paths-subdirectories 'false'
 set -g @sessionx-filter-current 'false'
 
 run '~/.tmux/plugins/tpm/tpm'
-

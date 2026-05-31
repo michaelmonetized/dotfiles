@@ -2,3 +2,14 @@ bindkey -e
 #bindkey '^[[A' history-search-backward
 #bindkey '^[[B' history-search-forward
 bindkey '^[w' kill-region
+
+open-nvim-here() {
+  zle -I
+  BUFFER=""
+  print -r --
+  nvim .
+  zle reset-prompt
+}
+
+zle -N open-nvim-here
+bindkey '^N' open-nvim-here

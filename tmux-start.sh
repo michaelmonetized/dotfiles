@@ -15,7 +15,7 @@ if /opt/homebrew/bin/tmux has-session -t hustlelaunch 2>/dev/null; then
     exec /opt/homebrew/bin/tmux attach-session -t hustlelaunch
 else
     echo "Creating new session" >> ~/tmux_start.log
-    exec /opt/homebrew/bin/tmux new-session -s hustlelaunch
+    exec /opt/homebrew/bin/tmux new-session -A -s hustlelaunch
 fi
 
 echo "This line should not be reached" >> ~/tmux_start.log

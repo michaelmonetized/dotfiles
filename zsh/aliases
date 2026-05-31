@@ -5,8 +5,8 @@ alias lt='eza --tree --git-ignore --color=always --icons=always --no-filesize --
 alias la='eza --color=always --long --git --icons=always --extended --total-size --all'
 alias lg='lazygit'
 alias c='clear'
+alias cxd="codex --dangerously-bypass-approvals-and-sandbox --enable goals"
 alias cld="claude --dangerously-skip-permissions"
-alias cxd="codex --dangerously-bypass-approvals-and-sandbox"
 alias gmd="gemini -y"
 alias np="~/bin/newproject" #pops an fzf menu with options ( hustlestack,  swift,  cli,  hustlestack-web-native-monorepo)
 alias npr='~/bin/stack "$@"'
@@ -17,7 +17,7 @@ alias nob='openclaw browser "$@"'
 alias nsh='open "https://sheets.new"'
 alias ndc='open "htts://docs.new"'
 alias nv='nvim "$@"'
-alias p='cld -p "$@"'
+alias p='cxd exec "$@"'
 unalias cb 2>/dev/null
 cb() {
   git remote show origin | awk '/HEAD branch/ {print $NF}'
