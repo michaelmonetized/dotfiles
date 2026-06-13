@@ -8,6 +8,7 @@ alias c='clear'
 alias cxd="codex --dangerously-bypass-approvals-and-sandbox --enable goals"
 alias cld="claude --dangerously-skip-permissions"
 alias gmd="gemini -y"
+alias gx="grok --always-approve --effort max -m grok-composer-2.5-fast --permission-mode bypassPermissions --reasoning-effort xhigh --todo-gate"
 alias np="~/bin/newproject" #pops an fzf menu with options ( hustlestack,  swift,  cli,  hustlestack-web-native-monorepo)
 alias npr='~/bin/stack "$@"'
 alias ni='gh issue create "$@"'

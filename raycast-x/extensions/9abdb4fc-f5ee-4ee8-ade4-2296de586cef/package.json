@@ -17,7 +17,9 @@
     "ViGeng",
     "dante",
     "5z99tsb75z",
-    "xilopaint"
+    "xilopaint",
+    "chrahe",
+    "clins1994"
   ],
   "categories": [
     "Applications",
@@ -203,6 +205,10 @@
               "asc",
               "desc"
             ]
+          },
+          "includeTrash": {
+            "type": "boolean",
+            "description": "Include emails from Trash in the search results.\n\nBy default, emails in Trash are excluded.\n\n@default false"
           }
         },
         "required": []
@@ -320,6 +326,37 @@
       "confirmation": true
     },
     {
+      "name": "move-to-trash",
+      "title": "Move to Trash",
+      "description": "Move an email to Trash in Apple Mail.",
+      "input": {
+        "type": "object",
+        "properties": {
+          "messageIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "The numeric message ids of the emails to move to Trash.\n\nUse the `search-emails` tool first to find emails and get their ids."
+          },
+          "messageId": {
+            "type": "string",
+            "description": "The numeric message id of a single email to move to Trash.\n\nUse `messageIds` when moving multiple emails."
+          },
+          "accountName": {
+            "type": "string",
+            "description": "Optional Apple Mail account name to narrow the lookup.\n\nUse this only when you already know which account contains the message."
+          },
+          "mailboxName": {
+            "type": "string",
+            "description": "Optional Apple Mail mailbox name to narrow the lookup.\n\nUse this only when you already know which mailbox contains the message."
+          }
+        },
+        "required": []
+      },
+      "confirmation": false
+    },
+    {
       "name": "copy-email-link",
       "title": "Copy Email Link",
       "description": "Copy the local link (URI) of the selected Apple Mail email so you can jump directly to that message. This makes it convenient to locate a specific email for context.",
@@ -385,7 +422,8 @@
             "callsTool": {
               "name": "search-emails",
               "arguments": {
-                "search": "raycast hackathon"
+                "search": "raycast hackathon",
+                "includeTrash": false
               }
             }
           }
@@ -452,6 +490,138 @@
                 ]
               },
               "name": "send-email"
+            }
+          }
+        ]
+      },
+      {
+        "input": "@mail move the email from amazon about shipping to trash",
+        "mocks": {
+          "search-emails": [
+            {
+              "id": "101",
+              "from": "shipment-tracking@amazon.com",
+              "subject": "Your package has shipped",
+              "summary": "Your order is on the way and will arrive tomorrow."
+            }
+          ],
+          "move-to-trash": {
+            "message": "1 Email moved to Trash",
+            "emails": [
+              {
+                "id": "101",
+                "subject": "Your package has shipped",
+                "from": "shipment-tracking@amazon.com",
+                "accountName": "iCloud",
+                "mailboxName": "INBOX"
+              }
+            ]
+          }
+        },
+        "expected": [
+          {
+            "callsTool": {
+              "name": "search-emails",
+              "arguments": {
+                "search": {
+                  "includes": "amazon"
+                }
+              }
+            }
+          },
+          {
+            "callsTool": {
+              "name": "move-to-trash",
+              "arguments": {
+                "messageId": "101"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "input": "@mail find the security alert email in trash",
+        "mocks": {
+          "search-emails": [
+            {
+              "id": "6551",
+              "from": "no-reply@accounts.google.com",
+              "subject": "Security alert",
+              "summary": "A new sign-in on Mac"
+            }
+          ]
+        },
+        "expected": [
+          {
+            "callsTool": {
+              "name": "search-emails",
+              "arguments": {
+                "search": {
+                  "includes": "security alert"
+                },
+                "includeTrash": true
+              }
+            }
+          }
+        ]
+      },
+      {
+        "input": "@mail move all github notification emails about failed builds to trash",
+        "mocks": {
+          "search-emails": [
+            {
+              "id": "201",
+              "from": "notifications@github.com",
+              "subject": "Build failed for raycast/extensions",
+              "summary": "The build failed on main."
+            },
+            {
+              "id": "202",
+              "from": "notifications@github.com",
+              "subject": "CI failed for mail extension",
+              "summary": "The workflow completed with failures."
+            }
+          ],
+          "move-to-trash": {
+            "message": "2 Emails moved to Trash",
+            "emails": [
+              {
+                "id": "201",
+                "subject": "Build failed for raycast/extensions",
+                "from": "notifications@github.com",
+                "accountName": "iCloud",
+                "mailboxName": "INBOX"
+              },
+              {
+                "id": "202",
+                "subject": "CI failed for mail extension",
+                "from": "notifications@github.com",
+                "accountName": "iCloud",
+                "mailboxName": "INBOX"
+              }
+            ]
+          }
+        },
+        "expected": [
+          {
+            "callsTool": {
+              "name": "search-emails",
+              "arguments": {
+                "search": {
+                  "includes": "github"
+                }
+              }
+            }
+          },
+          {
+            "callsTool": {
+              "name": "move-to-trash",
+              "arguments": {
+                "messageIds": [
+                  "201",
+                  "202"
+                ]
+              }
             }
           }
         ]

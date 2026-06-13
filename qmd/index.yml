@@ -34,3 +34,8 @@ collections:
     pattern: "**/{MEMORY.md,memories/**/*.md,sessions/**/*.jsonl}"
     context:
       "": Global Codex memory for Michael Hurley. Includes ~/.codex/MEMORY.md, long-term markdown memories under ~/.codex/memories, and Codex session JSONL logs under ~/.codex/sessions for recovering prior context that was not explicitly memorized. Search this when the user references prior work, preferences, recurring projects, product brainstorms, operational conventions, or previous Codex sessions.
+  second-brain:
+    path: /Users/michael/Library/Mobile Documents/iCloud~md~obsidian/Documents/Everything
+    pattern: "**/*.md"
+    context:
+      "": Michael Hurley's Obsidian second brain vault. Personal knowledge base maintained by LLMs following the LLM Wiki pattern. Contains career history, product ideas (BreezyApp, HustleStack), dev logs, situation reports, project plans, and a technical SEO dissertation reference. Search when answering questions about Michael's background, products, ongoing projects, or technical SEO/GEO/AAIO expertise.

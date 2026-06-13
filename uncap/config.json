@@ -1,0 +1,22 @@
+{
+  "appUrl": "http://localhost:3000",
+  "convexUrl": "https://agile-finch-439.convex.cloud",
+  "createdAt": "2026-06-12T06:32:00.476Z",
+  "version": 1,
+  "git": {
+    "identity": {
+      "name": "Michael Hurley",
+      "email": "michaelmonetized@gmail.com"
+    }
+  },
+  "gh": {
+    "configPath": "/Users/michael/.config/gh/config.yml",
+    "hostsPath": "/Users/michael/.config/gh/hosts.yml",
+    "hosts": {
+      "github.com": {
+        "login": "michaelmonetized",
+        "gitProtocol": "ssh"
+      }
+    }
+  }
+}
